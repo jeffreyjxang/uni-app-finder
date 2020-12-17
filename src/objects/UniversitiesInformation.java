@@ -4,6 +4,7 @@ import objects.University;
 import objects.UniversityDistance;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class UniversitiesInformation {
 				}
 
 				uni.setIcon(new ImageIcon(path + "/resources/uniPictures/" + uni.getName() + ".jpg"));
-				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png"));
+				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png").getImage().getScaledInstance(270,120, Image.SCALE_DEFAULT));
 
 
 			}
@@ -104,6 +105,7 @@ public class UniversitiesInformation {
 			for (University university : universities) {
 				try {
 					input = new Scanner(new File(path + "/resources/keyWords/" + university.getName() + ".txt"));
+
 
 					String keyWords = "";
 

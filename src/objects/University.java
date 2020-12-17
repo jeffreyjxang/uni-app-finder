@@ -1,7 +1,7 @@
 package objects;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.*;
 
 public class University {
 	private String name;
@@ -18,7 +18,7 @@ public class University {
 	private String description;
 	private Icon icon;
 	private String keywords;
-	private Icon logo;
+	private Image logo;
 	private String link;
 
 
@@ -152,11 +152,11 @@ public class University {
 		this.keywords = keywords;
 	}
 
-	public Icon getLogo() {
-		return logo;
+	public ImageIcon getLogo() {
+		return new ImageIcon(logo);
 	}
 
-	public void setLogo(Icon logo) {
+	public void setLogo(Image logo) {
 		this.logo = logo;
 	}
 

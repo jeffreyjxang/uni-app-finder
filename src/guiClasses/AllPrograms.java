@@ -43,6 +43,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	public static JPanel overallPanel = new JPanel();
 	private JLabel currentLocation = new JLabel();
 	private JButton website = new JButton();
+	private int totalMoves = 0;
 
 	// constructor to setup the GUI screen
 	public AllPrograms() {
@@ -64,6 +65,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		currentPage = 0;
 
+		combobox1.addItem("Select a Program");
 		// setting up combobox1, with the names of all the unis
 		for (University uni : uniArrayCopy) {
 			combobox1.addItem(uni.getName());
@@ -171,10 +173,10 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 			// creates a new unipanel(top right corner), and changes the picture
 			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+
 			uniPanel.setBounds(590, 0, 400, 500);
 			overallPanel.add(uniPanel);
 			currentLocation.setText(currentPage + 1 + "/14");
-			currentLocation.repaint();
 
 			overallPanel.repaint();
 		}
@@ -185,20 +187,26 @@ public class AllPrograms extends JPanel implements ActionListener {
 			reversed = false;
 			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			alphaSort();
-			int comboboxIndex = combobox1.getSelectedIndex();
-			overallPanel.remove(uniPanel);
-			uniPanel = createUniPanel(uniArrayCopy.get(comboboxIndex));
-			uniPanel.setBounds(590, 0, 400, 500);
-			scrollBar.setValue(comboboxIndex);
-			currentPage = comboboxIndex;
-			overallPanel.add(uniPanel);
-			currentLocation.setText(currentPage + 1 + "/14");
-			currentLocation.repaint();
-			overallPanel.repaint();
+
+			if (combobox1.getSelectedIndex() != 0) {
+				int comboboxIndex = combobox1.getSelectedIndex();
+				overallPanel.remove(uniPanel);
+				currentPage = comboboxIndex-1;
+				uniPanel = createUniPanel(uniArrayCopy.get(comboboxIndex-1));
+				uniPanel.setBounds(590, 0, 400, 500);
+				scrollBar.setValue(comboboxIndex);
+
+				currentLocation.setText(currentPage + 1 + "/14");
+				overallPanel.add(uniPanel);
+
+
+				overallPanel.repaint();
+			}
 		}
 
 		// "next" button
 		if (event.getSource() == nextBtn) {
+			totalMoves += 1;
 			currentPage += 1;
 			if (currentPage == maxIndex) {
 				currentPage = 0;
@@ -207,15 +215,18 @@ public class AllPrograms extends JPanel implements ActionListener {
 				currentPage = maxIndex;
 			}
 			overallPanel.remove(uniPanel);
-			combobox1.setSelectedIndex(currentPage);
 
 			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 			uniPanel.setBounds(590, 0, 400, 500);
-			overallPanel.add(uniPanel);
+			combobox1.setSelectedIndex(0);
 			currentLocation.setText(currentPage + 1 + "/14");
+
+			overallPanel.add(uniPanel);
 			currentLocation.repaint();
 			combobox1.repaint();
+
 			overallPanel.repaint();
+
 		}
 		// "back" button
 		if (event.getSource() == backBtn) {
@@ -229,8 +240,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 			overallPanel.remove(uniPanel);
 
-			combobox1.setSelectedIndex(currentPage);
 			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+
 			uniPanel.setBounds(590, 0, 400, 500);
 
 			overallPanel.add(uniPanel);
@@ -249,6 +260,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 			// creates a new unipanel(top right corner), and changes the picture
 			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+
 			uniPanel.setBounds(590, 0, 400, 500);
 			overallPanel.add(uniPanel);
 
@@ -332,6 +344,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 				searchFailedTF = false;
 				currentPage = 0;
 				uniArrayCopy = new ArrayList<>(customList);
+
 				maxIndex = customList.size();
 				overallPanel.remove(uniPanel);
 				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
@@ -363,13 +376,15 @@ public class AllPrograms extends JPanel implements ActionListener {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(400, 500);
-		JLabel nameLabel = new JLabel(uni.getName());
+		JLabel nameLabel = new JLabel();
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
 		JLabel logo = new JLabel();
+
 		logo.setIcon(uni.getLogo());
 		logo.setBounds(0, 70, 300, 200);
 
+		nameLabel.setText(uni.getName());
 		nameLabel.setBounds(0, 0, 400, 80);
 		nameLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 30));
 		nameLabel.setForeground(Colour.strongHighlight);
@@ -379,16 +394,16 @@ public class AllPrograms extends JPanel implements ActionListener {
 		infoLabel.setBounds(0, 120, 300, 500);
 		infoLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
-		panel.add(logo);
 		panel.add(nameLabel);
+		panel.add(logo);
 		panel.add(nationalRankLabel);
 		panel.add(infoLabel);
 		picture.setIcon(uniArrayCopy.get(currentPage).getIcon());
 		picture.setVisible(true);
 		panel.setBackground(Colour.bg);
-		repaint();
-		return panel;
+		panel.repaint();
 
+		return panel;
 	}
 
 	public void insertionSort() {
