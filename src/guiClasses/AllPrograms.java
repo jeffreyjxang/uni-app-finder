@@ -229,7 +229,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		// "next" button
 		if (event.getSource() == nextBtn) {
-			if (customList.size() != 1) {
+			if (uniArrayCopy.size() != 1) {
 				totalMoves += 1;
 				currentPage += 1;
 				if (currentPage == maxIndex) {
@@ -238,12 +238,10 @@ public class AllPrograms extends JPanel implements ActionListener {
 				if (currentPage == -1) {
 					currentPage = maxIndex;
 				}
-				for (University uni : uniArrayCopy) {
-					System.out.println(uni.getName());
-				}
+
 				overallPanel.remove(uniPanel);
 
-				System.out.println("Current name" + uniArrayCopy.get(currentPage).getName());
+
 				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 				uniPanel.setBounds(590, 0, 400, 500);
 				combobox1.setSelectedIndex(0);
@@ -258,9 +256,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 		// "back" button
 		if (event.getSource() == backBtn) {
-			if (customList.size() != 1) {
+			if (uniArrayCopy.size() != 1) {
 				currentPage -= 1;
-				System.out.println(maxIndex);
 				if (currentPage == -1) {
 					currentPage = maxIndex - 1;
 				}
@@ -281,7 +278,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 		if (event.getSource() == resetButton) {
-			if (customList.size() != 1) {
 				maxIndex = 14;
 				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				keyword.setText("");
@@ -296,14 +292,16 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 				combobox2.setSelectedIndex(0);
 				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
-				nextBtn.setBackground(Colour.lightBg);
-				backBtn.setBackground(Colour.lightBg);
 
-				nextBtn.setEnabled(false);
-				backBtn.setEnabled(false);
 				currentLocation.repaint();
 				overallPanel.repaint();
-			}
+
+			nextBtn.setBackground(Colour.strike);
+			backBtn.setBackground(Colour.strike);
+
+			nextBtn.setEnabled(true);
+			backBtn.setEnabled(true);
+
 		}
 
 		if (event.getSource() == website) {
@@ -337,7 +335,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			for (int i = 0; i < tempNames.size(); i++) {
 				if (text.equalsIgnoreCase(tempNames.get(i))) {
 					customList.add(uniClass.getUniversities().get(i));
-					System.out.println(uniClass.getUniversities().get(i).getName());
+
 				}
 			}
 			// shows a no matches label if there are no matches
@@ -350,14 +348,14 @@ public class AllPrograms extends JPanel implements ActionListener {
 				searchFailedTF = true;
 				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			} else if (text.equalsIgnoreCase("")) {
-				System.out.println("NONE");
+
 				maxIndex = 14;
 				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			}
 
 			// updates the uriarraycopy with the matching universities
 			else {
-				System.out.println("MATCHED");
+
 				if (searchFailedTF)
 					overallPanel.remove(searchFailed);
 				searchFailedTF = false;
