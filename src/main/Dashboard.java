@@ -156,19 +156,36 @@ public class Dashboard extends JPanel {
 		taskbarPanel.add(signOutButton);
 
 		// Create intro screen
-		JLabel titleLabel2 = new JLabel("App Name");
+		JLabel titleLabel2 = new JLabel("School Finder");
 		titleLabel2.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		titleLabel2.setForeground(Colour.strongHighlight);
 		titleLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel2.setBounds(0, 30, 925, 90);
 		introPanel.add(titleLabel2);
 
-		JLabel quoteLabel = new JLabel("Quote");
-		quoteLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		quoteLabel.setForeground(Colour.strongHighlight);
+		JLabel quoteLabel = new JLabel(
+				"<html>\"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma - which is living with the results of other people's thinking.\" - Steve Jobs<htlm>");
+		quoteLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		quoteLabel.setForeground(Colour.strike);
 		quoteLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		quoteLabel.setBounds(0, 155, 925, 75);
+		quoteLabel.setBounds(25, 175, 600, 90);
 		introPanel.add(quoteLabel);
+
+		JLabel quoteLabel2 = new JLabel(
+				"<html>\"If life were predictable it would crease to be life, and be without flavor.\" - Eleanor Roosevelt<htlm>");
+		quoteLabel2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		quoteLabel2.setForeground(Colour.highlight);
+		quoteLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+		quoteLabel2.setBounds(150, 300, 600, 75);
+		introPanel.add(quoteLabel2);
+
+		JLabel quoteLabel3 = new JLabel(
+				"<html>\"Many of life's failures are people who did not realize how close they were to success when they gave up.\" - Thomas A. Edison<htlm>");
+		quoteLabel3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		quoteLabel3.setForeground(Colour.contrast);
+		quoteLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+		quoteLabel3.setBounds(300, 425, 600, 75);
+		introPanel.add(quoteLabel3);
 
 		JLabel creatorLabel = new JLabel("Created By: Brittany, Jeffrey, Jordan, Michael and Mithun");
 		creatorLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
