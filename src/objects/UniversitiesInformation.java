@@ -97,7 +97,9 @@ public class UniversitiesInformation {
 				}
 
 				uni.setIcon(new ImageIcon(path + "/resources/uniPictures/" + uni.getName() + ".jpg"));
-				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png").getImage().getScaledInstance(270,120, Image.SCALE_DEFAULT));
+				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png"));
+
+				uni.setImage(uni.getLogo().getImage().getScaledInstance(uni.getLogo().getIconWidth()/3,uni.getLogo().getIconHeight()/3,0));
 
 
 			}

@@ -18,9 +18,17 @@ public class University {
 	private String description;
 	private Icon icon;
 	private String keywords;
-	private Image logo;
+	private ImageIcon logo;
 	private String link;
+	private Image image;
 
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
 
 	// constructor method University
 	public University(String name, double average, double cutoff, int tuition, int classSize, double latitude,
@@ -153,10 +161,10 @@ public class University {
 	}
 
 	public ImageIcon getLogo() {
-		return new ImageIcon(logo);
+		return  (logo);
 	}
 
-	public void setLogo(Image logo) {
+	public void setLogo(ImageIcon logo) {
 		this.logo = logo;
 	}
 
