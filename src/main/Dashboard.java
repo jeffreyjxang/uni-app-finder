@@ -123,26 +123,26 @@ public class Dashboard extends JPanel {
 		uniInfoButton.setBounds(25, 150, 160, 25);
 		taskbarPanel.add(uniInfoButton);
 
-		JButton accountButton = new JButton("My Account");
+		JButton accountButton = new JButton("My Preferences");
 		accountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hidePanel();
 				UniMatchmaker.accountPanel.setVisible(true);
 			}
 		});
-		accountButton.setBounds(25, 210, 160, 25);
+		accountButton.setBounds(25, 270, 160, 25);
 		taskbarPanel.add(accountButton);
 
-		JButton quizButton = new JButton("Take Quiz");
+		JButton quizButton = new JButton("Take Survey");
 		quizButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hidePanel();
 				SurveyScreen.survey.setVisible(true);
 			}
 		});
-		quizButton.setBounds(25, 270, 160, 25);
+		quizButton.setBounds(25, 330, 160, 25);
 		taskbarPanel.add(quizButton);
-
+		
 		JButton mapButton = new JButton("View Map");
 		mapButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -150,7 +150,7 @@ public class Dashboard extends JPanel {
 				mapScreen.getMapPanel().setVisible(true);
 			}
 		});
-		mapButton.setBounds(25, 330, 160, 25);
+		mapButton.setBounds(25, 210, 160, 25);
 		taskbarPanel.add(mapButton);
 
 		JButton helpButton2 = new JButton("Help");

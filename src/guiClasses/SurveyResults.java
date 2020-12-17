@@ -89,7 +89,7 @@ public class SurveyResults extends JPanel {
 
 //GIVE CREDIT TO DEFINITION SOURCE (WIKIPEDIA)
 	private static void displayAerospace() {
-		ImageIcon AEicon = new ImageIcon("types/aerospace.jpg");
+		ImageIcon AEicon = new ImageIcon("resources/types/aerospace.jpg");
 		JLabel AE = new JLabel(AEicon);
 		AE.setBounds(50, 150, 600, 400);
 		surveyResults.add(AE);
@@ -103,7 +103,7 @@ public class SurveyResults extends JPanel {
 	}
 
 	private static void displayCivil() {
-		ImageIcon CEicon = new ImageIcon("types/civil.jpg");
+		ImageIcon CEicon = new ImageIcon("resources/types/civil.jpg");
 		JLabel CE = new JLabel(CEicon);
 		CE.setBounds(50, 150, 600, 400);
 		surveyResults.add(CE);
@@ -117,7 +117,7 @@ public class SurveyResults extends JPanel {
 	}
 
 	private static void displaySoftware() {
-		ImageIcon SEicon = new ImageIcon("types/software.jpg");
+		ImageIcon SEicon = new ImageIcon("resources/types/software.jpg");
 		JLabel SE = new JLabel(SEicon);
 		SE.setBounds(50, 150, 600, 400);
 		surveyResults.add(SE);
@@ -131,7 +131,7 @@ public class SurveyResults extends JPanel {
 	}
 
 	private static void displayMechanical() {
-		ImageIcon MEicon = new ImageIcon("types/mechanical.jpg");
+		ImageIcon MEicon = new ImageIcon("resources/types/mechanical.jpg");
 		JLabel ME = new JLabel(MEicon);
 		ME.setBounds(50, 150, 600, 400);
 		surveyResults.add(ME);
@@ -145,7 +145,7 @@ public class SurveyResults extends JPanel {
 	}
 
 	private static void displayElectrical() {
-		ImageIcon EEicon = new ImageIcon("types/electrical.jpg");
+		ImageIcon EEicon = new ImageIcon("resources/types/electrical.jpg");
 		JLabel EE = new JLabel(EEicon);
 		EE.setBounds(50, 150, 600, 400);
 		surveyResults.add(EE);
