@@ -43,13 +43,13 @@ public class MapScreen implements ActionListener {
 	private double lon = -1, lat = -1;
 	private int x = -1, y = -1;
 	private boolean reveal = false;
+	public static boolean logic = false;
+	//the color of the uni dots (rainbow-ish)
 	private Color colors[] = { Color.decode("#CC3636"), Color.decode("#CC3366"), Color.decode("#CC33CC"),
 			Color.decode("#8636CC"), Color.decode("#3636CC"), Color.decode("#3688CC"), Color.decode("#36CCBA"),
 			Color.decode("#36CC87"), Color.decode("#36CC40"), Color.decode("#92CC36"), Color.decode("#CCC136"),
 			Color.decode("#CC9236"), Color.decode("#CC7636"), Color.decode("#CC5D36"), };
-//    public static double[] extraDistance = new double[14];
 
-//    private JFrame frame = new JFrame();
 	private JPanel mapPanel = new JPanel(); // size of panel 920x610
 	private JPanel distancePanel = new JPanel();
 	private JLabel map = new JLabel();
@@ -68,12 +68,9 @@ public class MapScreen implements ActionListener {
 	private ImageIcon blackDot = new ImageIcon(new ImageIcon("./resources/misc/black-dot.png").getImage()
 			.getScaledInstance(105 / DOT_SIZE, 105 / DOT_SIZE, 0));
 
-	private SwingWorker worker = null;
+	private SwingWorker worker = null; //allows "multi-threading"
 
 	private UniversitiesInformation universities;
-
-	public static boolean logic = false;
-
 	private UniversityDistance distance[] = new UniversityDistance[14];
 
 	// constructor to initialize the panels
@@ -84,15 +81,8 @@ public class MapScreen implements ActionListener {
 		setupDistance();
 	}
 
-	public JPanel getMapPanel() {
-		return mapPanel;
-	}
-
-	public JPanel getDistancePanel() {
-		return distancePanel;
-	}
-
-	void setupMisc() {
+	//Setting up the misc labels, needs to be placed on labels first
+	private void setupMisc() {
 		try {
 			Scanner in = new Scanner(new File(new File("").getAbsolutePath() + "/resources/misc/location.txt"));
 			for (int i = 0; i < 14; i++) {
@@ -105,7 +95,6 @@ public class MapScreen implements ActionListener {
 				distance[i].getDot().setVisible(false);
 				distancePanel.add(distance[i].getButton());
 				distancePanel.add(distance[i].getDot());
-				System.out.printf("%s = (%d, %d)\n", distance[i].getName(), distance[i].getX(), distance[i].getY());
 			}
 		} catch (Exception e) {
 			System.out.println("Had issue loading mapCoords for each uni");
@@ -113,13 +102,12 @@ public class MapScreen implements ActionListener {
 	}
 
 	// sets up the Map JPanel
-	void setupMap() {
+	private void setupMap() {
 		// map panel
 		mapPanel.setLayout(null);
 		mapPanel.setBackground(Colour.bg);
 		mapPanel.setVisible(true);
 //        mapPanel.setBounds(0, 0, 920, 610);
-//        frame.add(mapPanel);
 
 		JLabel header = new JLabel("Budget Google Map");
 		header.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -137,7 +125,7 @@ public class MapScreen implements ActionListener {
 		mapPanel.add(headerText);
 
 		JLabel otherText = new JLabel(
-				"<html>OR send your postal code and the <br>distance will also be calculated*<br>(if spinning gif appears for > 5sec, check that your postal code is correct)</html>");
+				"<html>OR send your postal code and the <br>distance will also be calculated*</html>");
 		otherText.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		otherText.setBounds(80, 480, 300, 125);
 		otherText.setForeground(Colour.highlight);
@@ -187,7 +175,6 @@ public class MapScreen implements ActionListener {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.printf("Mouse click = (%d, %d)\n", e.getX(), e.getY());
 				x = map.getX() + e.getX();
 				y = map.getY() + e.getY();
 				circle.setBounds(x - 25, y - 25, 50, 50);
@@ -221,7 +208,6 @@ public class MapScreen implements ActionListener {
 		distancePanel.setBackground(Colour.bg);
 		distancePanel.setVisible(false);
 		distancePanel.setBounds(0, 0, 920, 610);
-//        frame.add(distancePanel);
 
 		JLabel header = new JLabel("University Proximity");
 		header.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -263,10 +249,7 @@ public class MapScreen implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < 14; i++) {
 					final int j = i;
-					System.out.println("BUTTON FOR " + i);
-					System.out.println(distance[i].getVisbility());
 					switchVisibility(j);
-					System.out.println(distance[i].getVisbility());
 				}
 			}
 		});
@@ -319,11 +302,13 @@ public class MapScreen implements ActionListener {
 		}
 	}
 
+	//swithces the visiblity on the university's dots
 	private void switchVisibility(int i) {
 		distance[i].getDot().setVisible(distance[i].getVisbility());
 		distance[i].setVisibility(!distance[i].getVisbility());
 	}
 
+	//sorts the distance array to match the default from .txt files
 	private void resetDistance() {
 		for (int i = 0; i < 14; i++) {
 			for (int j = i + 1; j < 14; j++) {
@@ -356,7 +341,7 @@ public class MapScreen implements ActionListener {
 		}
 		universities.getUniversityDistances().add(copy); // adding the copy, while I still have the sorted array
 		Arrays.sort(distance); // since the UniversityDistance has implements Comparable, this works
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 14; i++) { //this places the dots on the map with the right color
 			distance[i].setColor(colors[i]);
 			distance[i].setID(String.format("%02d", i + 1));
 			distance[i].getDot()
@@ -365,14 +350,13 @@ public class MapScreen implements ActionListener {
 			distance[i].getDot().setBounds(distance[i].getX(), distance[i].getY() - 150, 105 / DOT_SIZE,
 					105 / DOT_SIZE);
 		}
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < 14; i++) { //displays the sorted arrays with their names and the proper buttons
 			result[i].setText(distance[i].toString());
 			// need to remove all actionListeners or else they'll pile up on each other
 			for (ActionListener al : distance[i].getButton().getActionListeners()) {
 				distance[i].getButton().removeActionListener(al);
 			}
 			distance[i].getButton().setBounds(result[i].getX() - 65, result[i].getY(), 50, 35);
-
 			distance[i].getButton().setText("SEE");
 			final int tmp = i;
 			distance[i].getButton().addActionListener(e -> switchVisibility(tmp));
@@ -385,7 +369,7 @@ public class MapScreen implements ActionListener {
 		}
 		universities.getUniversityDistances().add(distance);
 
-		if (click) {
+		if (click) { //if user clicked on the map --> display preview
 			// you need a bufferedImage to get a snippet of an image
 			BufferedImage mapCopy = new BufferedImage(mapIcon.getIconWidth(), mapIcon.getIconHeight(),
 					BufferedImage.TYPE_INT_RGB);
@@ -408,6 +392,7 @@ public class MapScreen implements ActionListener {
 			mapPreview.setIcon(new ImageIcon(mapDisplay));
 		}
 
+		//if postal code lies within these bounds, place black dot
 		double TL = 41.52450;
 		double TR = 46.88475;
 		double BL = -84.88621;
@@ -416,7 +401,6 @@ public class MapScreen implements ActionListener {
 			double dotLat = googleMap.getX() + googleMap.getWidth() * (lat - TL) / (TR - TL);
 			double dotLon = googleMap.getY() + googleMap.getHeight() * (lon - BR) / (BL - BR);
 			dot.setBounds((int) dotLat, (int) dotLon, 105 / DOT_SIZE, 105 / DOT_SIZE);
-			System.out.printf("%f = %f\n", dotLat, dotLon);
 			dot.setVisible(true);
 		} else {
 			dot.setVisible(false);
@@ -430,12 +414,39 @@ public class MapScreen implements ActionListener {
 		reveal = !reveal;
 	}
 
+	//warns users if they enter an invalid postal code
+	private boolean valid(String text) {
+		text = text.toUpperCase();
+		for (int i=0;i<6;i++) {
+			if(i%2==0) { //letter
+				if(!('A'<=text.charAt(i) && text.charAt(i)<='Z')) {
+					return false;
+				}
+			} else { //number
+				if(!('0'<=text.charAt(i) && text.charAt(i)<='9')) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	// logic for JButtons
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// if the button was on the Map JPanel
 		if (event.getSource() == goToDistance) {
-			if ((!text.getText().equals("A1B2C3") && text.getText().length() == 6) || (x != -1 && y != -1)) {
+			if((!text.getText().equals("A1B2C3") && text.getText().length() == 6)) {
+				if(valid(text.getText())) {
+					gif.setVisible(true);
+					logic = true;
+					setupWorker();
+					worker.execute();
+				} else {
+					JOptionPane.showMessageDialog(mapPanel, "Invalid Postal Code");
+				}
+			}
+			else if ((x != -1 && y != -1)) {
 				gif.setVisible(true);
 				logic = true;
 				setupWorker();
@@ -540,5 +551,15 @@ public class MapScreen implements ActionListener {
 	// helper switchVisibilityction to simplify the math of the Haversince formula
 	private double haversin(double val) {
 		return Math.pow(Math.sin(val / 2), 2);
+	}
+
+	//returns the mapPanel
+	public JPanel getMapPanel() {
+		return mapPanel;
+	}
+
+	//returns distancePanel
+	public JPanel getDistancePanel() {
+		return distancePanel;
 	}
 }
