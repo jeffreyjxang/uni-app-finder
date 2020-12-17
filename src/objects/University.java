@@ -19,10 +19,12 @@ public class University {
 	private Icon icon;
 	private String keywords;
 	private Icon logo;
+	private String link;
+
 
 	// constructor method University
 	public University(String name, double average, double cutoff, int tuition, int classSize, double latitude,
-			double longitude, int nationalRank, int uniSize, double residenceCost, int ranking) {
+			double longitude, int nationalRank, int uniSize, double residenceCost, int ranking, String link) {
 		this.name = name;
 		this.average = average;
 		this.cutoff = cutoff;
@@ -34,6 +36,7 @@ public class University {
 		this.uniSize = uniSize;
 		this.residenceCost = residenceCost;
 		this.ranking = ranking;
+		this.link = link;
 	}
 
 	// getters and setters
@@ -156,4 +159,8 @@ public class University {
 	public void setLogo(Icon logo) {
 		this.logo = logo;
 	}
+
+	public String getLink() { return link; }
+
+	public void setLink(String link) {this.link = link; }
 }

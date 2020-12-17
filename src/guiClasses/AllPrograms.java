@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static java.awt.Color.*;
@@ -39,6 +42,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	private JButton resetButton = new JButton();
 	public static JPanel overallPanel = new JPanel();
 	private JLabel currentLocation = new JLabel();
+	private JButton website = new JButton();
 
 	// constructor to setup the GUI screen
 	public AllPrograms() {
@@ -130,6 +134,11 @@ public class AllPrograms extends JPanel implements ActionListener {
 		overallPanel.add(currentLocation);
 		overallPanel.add(searchButton);
 
+		website.setText("Website");
+		website.setBounds(450, 270, 100, 30);
+		website.setForeground(Colour.strongHighlight);
+		website.addActionListener(this);
+		overallPanel.add(website);
 		setVisible(true);
 	}
 
@@ -249,6 +258,16 @@ public class AllPrograms extends JPanel implements ActionListener {
 			overallPanel.repaint();
 		}
 
+		if (event.getSource() == website) {
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+				try {
+					Desktop.getDesktop().browse(new URI(uniArrayCopy.get(currentPage).getLink()));
+				} catch (IOException | URISyntaxException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
 		// button to start search
 		if (event.getSource() == searchButton) {
 			customList.clear();
@@ -348,7 +367,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
 		JLabel logo = new JLabel();
-		System.out.println(uni.getName());
 		logo.setIcon(uni.getLogo());
 		logo.setBounds(0, 70, 300, 200);
 
@@ -420,4 +438,5 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 		return text;
 	}
+
 }

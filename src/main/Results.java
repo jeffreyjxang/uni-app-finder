@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.swing.BorderFactory;
@@ -35,7 +37,7 @@ public class Results extends JPanel {
 	private static JLabel[] pictureLabel = new JLabel[2];
 	private static JPanel[] uniPanel = new JPanel[2];
 	private static JLabel[] clickHere = new JLabel[2];
-	private static Desktop[] link = new Desktop[2];
+	public static int y = 0;
 
 	public static void CreateResults() {
 
@@ -98,6 +100,7 @@ public class Results extends JPanel {
 		double[] residence = new double[2];
 		int[] uniSize = new int[2];
 		int[] classSize = new int[2];
+		String[] link = new String[2];
 
 		// Add university info label
 		for (int x = 0; x < nameLabel.length; x++) {
@@ -109,26 +112,8 @@ public class Results extends JPanel {
 			residence[x] = UniversitiesInformation.universities.get(num[x]).getResidenceCost();
 			uniSize[x] = UniversitiesInformation.universities.get(num[x]).getUniSize();
 			classSize[x] = UniversitiesInformation.universities.get(num[x]).getClassSize();
+			link[x] = UniversitiesInformation.universities.get(num[x]).getLink();
 
-			nameLabel[x] = new JLabel("Institution #" + (x + 1) + " Name: " + uni[x]);
-			nameLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			nameLabel[x].setBounds(30 + 450 * x, 150, 300, 25);
-			resultsPanel.add(nameLabel[x]);
-
-			distanceLabel[x] = new JLabel("Distance: " + distance[x] + " km");
-			distanceLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			distanceLabel[x].setBounds(30 + 450 * x, 185, 300, 25);
-			resultsPanel.add(distanceLabel[x]);
-
-			admissionLabel[x] = new JLabel("Cutoff Average: " + cutoff[x] + "%");
-			admissionLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			admissionLabel[x].setBounds(30 + 450 * x, 220, 300, 25);
-			resultsPanel.add(admissionLabel[x]);
-
-			tuitionLabel[x] = new JLabel("Tuition (Annually): $" + tuition[x]);
-			tuitionLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			tuitionLabel[x].setBounds(30 + 450 * x, 255, 300, 25);
-			resultsPanel.add(tuitionLabel[x]);
 			uniPanel[x] = new JPanel();
 			uniPanel[x].setBounds(50 + 455 * x, 140, 385, 450);
 			uniPanel[x].setBackground(Colour.bg);
@@ -188,8 +173,19 @@ public class Results extends JPanel {
 			pictureLabel[x].setBounds(35, 240, 300, 200);
 			pictureLabel[x].addMouseListener(new MouseAdapter() {
 				public void mouseReleased(MouseEvent e) {
-					// link[x].browse(new
-					// URI(UniversitiesInformation.universities.get(num[x]).getLink();
+					try {
+						Desktop.getDesktop().browse(new URI(link[y]));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						System.out.print("Link not found!");
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						System.out.print("Link not found!");
+					}
+
+					y++;
 				}
 
 				@Override
@@ -220,25 +216,6 @@ public class Results extends JPanel {
 			uniPanel[x].add(pictureLabel[x]);
 
 			resultsPanel.add(uniPanel[x]);
-
-			residenceLabel[x] = new JLabel("Residence Cost: $" + residence[x]);
-			residenceLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			residenceLabel[x].setBounds(30 + 450 * x, 290, 300, 25);
-			resultsPanel.add(residenceLabel[x]);
-
-			uniSizeLabel[x] = new JLabel("University Population: " + uniSize[x]);
-			uniSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			uniSizeLabel[x].setBounds(30 + 450 * x, 325, 300, 25);
-			resultsPanel.add(uniSizeLabel[x]);
-
-			classSizeLabel[x] = new JLabel("Average Class Size: " + classSize[x]);
-			classSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
-			classSizeLabel[x].setBounds(30 + 450 * x, 360, 300, 25);
-			resultsPanel.add(classSizeLabel[x]);
-
-			pictureLabel[x] = new JLabel(new ImageIcon("resources/uniPictures2/" + uni[x] + ".jpg"));
-			pictureLabel[x].setBounds(30 + 450 * x, 400, 300, 200);
-			resultsPanel.add(pictureLabel[x]);
 
 		}
 
