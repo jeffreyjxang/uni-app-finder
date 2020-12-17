@@ -51,7 +51,7 @@ public class UniversitiesInformation {
 			while (input.hasNext()) {
 				universities.add(index, new University(input.next().replaceAll("\n", "").replaceAll("\r", ""),
 						input.nextDouble(), input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
-						input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(), input.nextInt()));
+						input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(), input.nextInt(), input.next()));
 				index++;
 
 			}
