@@ -97,6 +97,7 @@ public class MapScreen implements ActionListener {
 				distancePanel.add(distance[i].getDot());
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Had issue loading mapCoords for each uni");
 		}
 	}

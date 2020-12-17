@@ -3,6 +3,8 @@ package main;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -52,22 +54,22 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		accountEditPanel.add(externalPanel);
 
 		// Create title
-		JLabel titleLabel = new JLabel("University Matchmaker");
+		JLabel titleLabel = new JLabel("Preference University Matchmaker");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		titleLabel.setForeground(Colour.strongHighlight);
-		titleLabel.setBounds(300, 10, 400, 65);
+		titleLabel.setBounds(200, 10, 500, 65);
 		accountEditPanel.add(titleLabel);
 
 		// Create description
 		JLabel descriptionLabel = new JLabel("External Factors:");
-		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		descriptionLabel.setForeground(Colour.strongHighlight);
 		descriptionLabel.setBounds(25, 15, 280, 40);
 		externalPanel.add(descriptionLabel);
 
 		// Create courses and grades heading
-		JLabel courseGradeLabel = new JLabel("Courses and Grades");
-		courseGradeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel courseGradeLabel = new JLabel("Courses and Grades:");
+		courseGradeLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		courseGradeLabel.setForeground(Colour.strongHighlight);
 		courseGradeLabel.setBounds(40, 15, 280, 40);
 		coursesPanel.add(courseGradeLabel);
@@ -79,6 +81,18 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		saveButton.setBounds(800, 30, 75, 30);
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					VerifyLogin.saveInformation(CreateAccount.username, CreateAccount.password, gradeTextField,
+							courseTextField, dropDownLists[0].getSelectedIndex(), dropDownLists[1].getSelectedIndex(),
+							dropDownLists[2].getSelectedIndex(), dropDownLists[3].getSelectedIndex(),
+							dropDownLists[4].getSelectedIndex(), dropDownLists[5].getSelectedIndex(),
+							sliders[0].getValue(), sliders[1].getValue(), sliders[2].getValue(), sliders[3].getValue(),
+							sliders[4].getValue(), sliders[5].getValue());
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				save = true;
 				Dashboard.hidePanel();
 				UniMatchmaker.CreateAccount();
@@ -114,7 +128,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			gradeTextField[counter].setBounds(160, 75 + 75 * counter, 70, 30);
 			coursesPanel.add(gradeTextField[counter]);
 
-			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 20));
+			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 18));
 			headings[counter].setForeground(Colour.strongHighlight);
 
 			dropDownLists[counter] = new JComboBox();
@@ -125,7 +139,6 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			sliders[counter].setMajorTickSpacing(1);
 			sliders[counter].setMinimum(1);
 			sliders[counter].setMaximum(5);
-			sliders[counter].setValue(3);
 			sliders[counter].setPaintTicks(true);
 			sliders[counter].setPaintLabels(true);
 			sliders[counter].setSnapToTicks(true);
@@ -177,6 +190,28 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		dropDownLists[5].addItem(">300");
 		dropDownLists[5].addItem("Does not matter");
 
+		if (VerifyLogin.verifyInformation()) {
+			int index = 0;
+			ArrayList<String> Information = VerifyLogin.loadInformation();
+			for (int x = 0; x < 6; x++) {
+				gradeTextField[x].setText(Information.get(index));
+				index++;
+			}
+			for (int x = 0; x < 6; x++) {
+				courseTextField[x].setText(Information.get(index));
+				index++;
+			}
+			for (int x = 0; x < 6; x++) {
+				dropDownLists[x].setSelectedIndex(Integer.parseInt(Information.get(index)));
+				index++;
+			}
+			for (int x = 0; x < 6; x++) {
+				sliders[x].setValue(Integer.parseInt(Information.get(index)));
+				index++;
+			}
+			
+			
+		}
 	}
 
 }
