@@ -2,6 +2,8 @@ package main;
 
 import guiClasses.AllPrograms;
 import guiClasses.MapScreen;
+import guiClasses.SurveyResults;
+import guiClasses.SurveyScreen;
 import objects.UniversitiesInformation;
 import tools.Colour;
 
@@ -28,6 +30,7 @@ public class Dashboard extends JPanel {
 	public static JPanel displayPanel;
 	public static JPanel introPanel;
 	public static boolean results;
+	public static boolean results2;
 
 	private static UniversitiesInformation universities = new UniversitiesInformation();
 	private static MapScreen mapScreen = new MapScreen(universities);
@@ -60,6 +63,9 @@ public class Dashboard extends JPanel {
 
 		new AllPrograms();
 		displayPanel.add(AllPrograms.overallPanel);
+
+		new SurveyScreen();
+		displayPanel.add(SurveyScreen.survey);
 
 		mapScreen.getMapPanel().setBounds(210, 0, 920, 610);
 		displayPanel.add(mapScreen.getMapPanel());
@@ -128,6 +134,12 @@ public class Dashboard extends JPanel {
 		taskbarPanel.add(accountButton);
 
 		JButton quizButton = new JButton("Take Quiz");
+		quizButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hidePanel();
+				SurveyScreen.survey.setVisible(true);
+			}
+		});
 		quizButton.setBounds(25, 270, 160, 25);
 		taskbarPanel.add(quizButton);
 
@@ -208,9 +220,13 @@ public class Dashboard extends JPanel {
 		UniMatchmaker.accountPanel.setVisible(false);
 		UniMatchmakerInfoEdit.accountEditPanel.setVisible(false);
 		AllPrograms.overallPanel.setVisible(false);
+		SurveyScreen.survey.setVisible(false);
 
 		if (results)
 			Results.resultsPanel.setVisible(false);
+
+		if (results2)
+			SurveyResults.surveyResults.setVisible(false);
 
 	}
 
