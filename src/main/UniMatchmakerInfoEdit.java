@@ -114,7 +114,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			gradeTextField[counter].setBounds(160, 75 + 75 * counter, 70, 30);
 			coursesPanel.add(gradeTextField[counter]);
 
-			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 18));
+			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 20));
 			headings[counter].setForeground(Colour.strongHighlight);
 
 			dropDownLists[counter] = new JComboBox();
@@ -125,6 +125,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			sliders[counter].setMajorTickSpacing(1);
 			sliders[counter].setMinimum(1);
 			sliders[counter].setMaximum(5);
+			sliders[counter].setValue(3);
 			sliders[counter].setPaintTicks(true);
 			sliders[counter].setPaintLabels(true);
 			sliders[counter].setSnapToTicks(true);

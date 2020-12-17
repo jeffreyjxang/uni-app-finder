@@ -1,8 +1,13 @@
 package main;
 
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URISyntaxException;
 
 import javax.swing.BorderFactory;
 
@@ -29,8 +34,12 @@ public class Results extends JPanel {
 	private static JLabel[] classSizeLabel = new JLabel[2];
 	private static JLabel[] pictureLabel = new JLabel[2];
 	private static JPanel[] uniPanel = new JPanel[2];
+	private static JLabel[] clickHere = new JLabel[2];
+	private static Desktop[] link = new Desktop[2];
 
 	public static void CreateResults() {
+
+		Dashboard.results = true;
 
 		Border border = BorderFactory.createLineBorder(Colour.strongHighlight, 3);
 
@@ -72,13 +81,11 @@ public class Results extends JPanel {
 		backButton.setBounds(30, 30, 100, 30);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resultsPanel.setVisible(false);
+				Dashboard.hidePanel();
 				UniMatchmaker.accountPanel.setVisible(true);
 			}
 		});
 		resultsPanel.add(backButton);
-
-		MatchmakingAlgorithm.Matchmaker();
 
 		int[] num = new int[2];
 		num[0] = MatchmakingAlgorithm.greatestIndex;
@@ -123,7 +130,7 @@ public class Results extends JPanel {
 			tuitionLabel[x].setBounds(30 + 450 * x, 255, 300, 25);
 			resultsPanel.add(tuitionLabel[x]);
 			uniPanel[x] = new JPanel();
-			uniPanel[x].setBounds(50 + 455 * x, 150, 375, 450);
+			uniPanel[x].setBounds(50 + 455 * x, 140, 385, 450);
 			uniPanel[x].setBackground(Colour.bg);
 			uniPanel[x].setLayout(null);
 			uniPanel[x].setBorder(border);
@@ -158,20 +165,58 @@ public class Results extends JPanel {
 			residenceLabel[x].setBounds(10, 130, 300, 25);
 			uniPanel[x].add(residenceLabel[x]);
 
-			uniSizeLabel[x] = new JLabel("University Population: " + uniSize[x]);
+			uniSizeLabel[x] = new JLabel("University Population: " + uniSize[x] + " students");
 			uniSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
 			uniSizeLabel[x].setForeground(Colour.strongHighlight);
 			uniSizeLabel[x].setBounds(10, 160, 300, 25);
 			uniPanel[x].add(uniSizeLabel[x]);
 
-			classSizeLabel[x] = new JLabel("Average Class Size: " + classSize[x]);
+			classSizeLabel[x] = new JLabel("Average Class Size: " + classSize[x] + " students");
 			classSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
 			classSizeLabel[x].setForeground(Colour.strongHighlight);
 			classSizeLabel[x].setBounds(10, 190, 300, 25);
 			uniPanel[x].add(classSizeLabel[x]);
 
+			clickHere[x] = new JLabel("Click to visit website:");
+			clickHere[x].setFont(new Font("Tahoma", Font.PLAIN, 12));
+			clickHere[x].setForeground(Colour.strongHighlight);
+			clickHere[x].setBounds(43, 220, 200, 25);
+			uniPanel[x].add(clickHere[x]);
+
 			pictureLabel[x] = new JLabel(new ImageIcon("resources/uniPictures2/" + uni[x] + ".jpg"));
-			pictureLabel[x].setBounds(35, 230, 300, 200);
+			pictureLabel[x].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			pictureLabel[x].setBounds(35, 240, 300, 200);
+			pictureLabel[x].addMouseListener(new MouseAdapter() {
+				public void mouseReleased(MouseEvent e) {
+					// link[x].browse(new
+					// URI(UniversitiesInformation.universities.get(num[x]).getLink();
+				}
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+			});
 			uniPanel[x].add(pictureLabel[x]);
 
 			resultsPanel.add(uniPanel[x]);
