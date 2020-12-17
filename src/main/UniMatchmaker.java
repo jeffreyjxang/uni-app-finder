@@ -53,22 +53,22 @@ public class UniMatchmaker extends JPanel {
 		accountPanel.add(externalPanel);
 
 		// Create title
-		JLabel titleLabel = new JLabel("Preference University Matchmaker");
+		JLabel titleLabel = new JLabel("University Matchmaker");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		titleLabel.setForeground(Colour.strongHighlight);
-		titleLabel.setBounds(200, 10, 500, 65);
+		titleLabel.setBounds(300, 10, 400, 65);
 		accountPanel.add(titleLabel);
 
 		// Create description
 		JLabel descriptionLabel = new JLabel("External Factors:");
-		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		descriptionLabel.setForeground(Colour.strongHighlight);
 		descriptionLabel.setBounds(25, 15, 280, 40);
 		externalPanel.add(descriptionLabel);
 
 		// Create courses and grades heading
-		JLabel courseGradeLabel = new JLabel("Courses and Grades:");
-		courseGradeLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JLabel courseGradeLabel = new JLabel("Courses and Grades");
+		courseGradeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		courseGradeLabel.setForeground(Colour.strongHighlight);
 		courseGradeLabel.setBounds(25, 15, 280, 40);
 		coursesPanel.add(courseGradeLabel);

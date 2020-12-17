@@ -110,6 +110,25 @@ public class Results extends JPanel {
 			uniSize[x] = UniversitiesInformation.universities.get(num[x]).getUniSize();
 			classSize[x] = UniversitiesInformation.universities.get(num[x]).getClassSize();
 
+			nameLabel[x] = new JLabel("Institution #" + (x + 1) + " Name: " + uni[x]);
+			nameLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			nameLabel[x].setBounds(30 + 450 * x, 150, 300, 25);
+			resultsPanel.add(nameLabel[x]);
+
+			distanceLabel[x] = new JLabel("Distance: " + distance[x] + " km");
+			distanceLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			distanceLabel[x].setBounds(30 + 450 * x, 185, 300, 25);
+			resultsPanel.add(distanceLabel[x]);
+
+			admissionLabel[x] = new JLabel("Cutoff Average: " + cutoff[x] + "%");
+			admissionLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			admissionLabel[x].setBounds(30 + 450 * x, 220, 300, 25);
+			resultsPanel.add(admissionLabel[x]);
+
+			tuitionLabel[x] = new JLabel("Tuition (Annually): $" + tuition[x]);
+			tuitionLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tuitionLabel[x].setBounds(30 + 450 * x, 255, 300, 25);
+			resultsPanel.add(tuitionLabel[x]);
 			uniPanel[x] = new JPanel();
 			uniPanel[x].setBounds(50 + 455 * x, 140, 385, 450);
 			uniPanel[x].setBackground(Colour.bg);
@@ -201,6 +220,25 @@ public class Results extends JPanel {
 			uniPanel[x].add(pictureLabel[x]);
 
 			resultsPanel.add(uniPanel[x]);
+
+			residenceLabel[x] = new JLabel("Residence Cost: $" + residence[x]);
+			residenceLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			residenceLabel[x].setBounds(30 + 450 * x, 290, 300, 25);
+			resultsPanel.add(residenceLabel[x]);
+
+			uniSizeLabel[x] = new JLabel("University Population: " + uniSize[x]);
+			uniSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			uniSizeLabel[x].setBounds(30 + 450 * x, 325, 300, 25);
+			resultsPanel.add(uniSizeLabel[x]);
+
+			classSizeLabel[x] = new JLabel("Average Class Size: " + classSize[x]);
+			classSizeLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
+			classSizeLabel[x].setBounds(30 + 450 * x, 360, 300, 25);
+			resultsPanel.add(classSizeLabel[x]);
+
+			pictureLabel[x] = new JLabel(new ImageIcon("resources/uniPictures2/" + uni[x] + ".jpg"));
+			pictureLabel[x].setBounds(30 + 450 * x, 400, 300, 200);
+			resultsPanel.add(pictureLabel[x]);
 
 		}
 
