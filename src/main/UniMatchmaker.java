@@ -94,11 +94,12 @@ public class UniMatchmaker extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (MapScreen.logic) {
 					Dashboard.hidePanel();
+					MatchmakingAlgorithm.Matchmaker();
 					Results.CreateResults();
 					Results.resultsPanel.setVisible(true);
 				} else
 					JOptionPane.showMessageDialog(accountPanel,
-							"Wait, first go to the view map tab to set your location!");
+							"Hang on! First go to the view map tab to set your location!");
 			}
 		});
 		externalPanel.add(resultsButton);
@@ -121,7 +122,7 @@ public class UniMatchmaker extends JPanel {
 			courseLabel[counter].setBounds(20, 75 + 75 * counter, 250, 40);
 			coursesPanel.add(courseLabel[counter]);
 
-			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 18));
+			headings[counter].setFont(new Font("Tahoma", Font.PLAIN, 20));
 			headings[counter].setForeground(Colour.strongHighlight);
 
 			factorValue[counter] = new JLabel(

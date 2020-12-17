@@ -27,6 +27,7 @@ public class Dashboard extends JPanel {
 	public static JPanel taskbarPanel;
 	public static JPanel displayPanel;
 	public static JPanel introPanel;
+	public static boolean results;
 
 	private static UniversitiesInformation universities = new UniversitiesInformation();
 	private static MapScreen mapScreen = new MapScreen(universities);
@@ -56,9 +57,6 @@ public class Dashboard extends JPanel {
 		displayPanel.add(introPanel);
 		introPanel.setLayout(null);
 		introPanel.setBackground(Colour.bg);
-
-		new AllPrograms();
-		displayPanel.add(AllPrograms.overallPanel);
 
 		new AllPrograms();
 		displayPanel.add(AllPrograms.overallPanel);
@@ -101,6 +99,7 @@ public class Dashboard extends JPanel {
 				// TODO Auto-generated method stub
 
 			}
+
 		});
 		logoLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		logoLabel.setBounds(0, 20, 210, 100);
@@ -113,7 +112,8 @@ public class Dashboard extends JPanel {
 				hidePanel();
 				AllPrograms.overallPanel.setVisible(true);
 
-			}});
+			}
+		});
 		uniInfoButton.setBounds(25, 150, 160, 25);
 		taskbarPanel.add(uniInfoButton);
 
@@ -188,10 +188,12 @@ public class Dashboard extends JPanel {
 //		dashboardPanel.setVisible(false);
 		mapScreen.getMapPanel().setVisible(false);
 		mapScreen.getDistancePanel().setVisible(false);
-
 		UniMatchmaker.accountPanel.setVisible(false);
 		UniMatchmakerInfoEdit.accountEditPanel.setVisible(false);
 		AllPrograms.overallPanel.setVisible(false);
+
+		if (results)
+			Results.resultsPanel.setVisible(false);
 
 	}
 

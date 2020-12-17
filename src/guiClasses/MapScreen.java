@@ -8,6 +8,9 @@ import tools.Colour;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.*;
+
+import main.Results;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -90,24 +93,25 @@ public class MapScreen implements ActionListener {
 	}
 
 	void setupMisc() {
-        try {
-            Scanner in = new Scanner(new File(new File("").getAbsolutePath() + "/resources/misc/location.txt"));
-            for (int i=0;i<14;i++) {
-                double uniLat = universities.getUniversities().get(i).getLatitude();
-                double uniLon = universities.getUniversities().get(i).getLongitude();
-                distance[i] = new UniversityDistance(universities.getUniversities().get(i).getName(),
-                    calculateDistance(lat, lon, uniLat, uniLon));
-                distance[i].setX(400+googleMap.getX()+in.nextInt());
-                distance[i].setY(150+googleMap.getY()+in.nextInt());
-                distance[i].getDot().setVisible(false);
-                distancePanel.add(distance[i].getButton());
-                distancePanel.add(distance[i].getDot());
-                System.out.printf("%s = (%d, %d)\n", distance[i].getName(), distance[i].getX(), distance[i].getY());
-            }
-        } catch (Exception e) {
-            System.out.println("Had issue loading mapCoords for each uni");
-        }
-    }
+		try {
+			Scanner in = new Scanner(new File(new File("").getAbsolutePath() + "/resources/misc/location.txt"));
+			for (int i = 0; i < 14; i++) {
+				double uniLat = universities.getUniversities().get(i).getLatitude();
+				double uniLon = universities.getUniversities().get(i).getLongitude();
+				distance[i] = new UniversityDistance(universities.getUniversities().get(i).getName(),
+						calculateDistance(lat, lon, uniLat, uniLon));
+				distance[i].setX(400 + googleMap.getX() + in.nextInt());
+				distance[i].setY(150 + googleMap.getY() + in.nextInt());
+				distance[i].getDot().setVisible(false);
+				distancePanel.add(distance[i].getButton());
+				distancePanel.add(distance[i].getDot());
+				System.out.printf("%s = (%d, %d)\n", distance[i].getName(), distance[i].getX(), distance[i].getY());
+			}
+		} catch (Exception e) {
+			System.out.println("Had issue loading mapCoords for each uni");
+		}
+	}
+
 	// sets up the Map JPanel
 	void setupMap() {
 		// map panel
@@ -259,7 +263,7 @@ public class MapScreen implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				for (int i = 0; i < 14; i++) {
 					final int j = i;
-					System.out.println("BUTTON FOR "+i);
+					System.out.println("BUTTON FOR " + i);
 					System.out.println(distance[i].getVisbility());
 					switchVisibility(j);
 					System.out.println(distance[i].getVisbility());

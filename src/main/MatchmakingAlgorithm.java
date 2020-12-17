@@ -37,7 +37,6 @@ public class MatchmakingAlgorithm {
 
 			uniCutoff[counter] = UniversitiesInformation.universities.get(counter).getCutoff();
 			distance[counter] = UniversitiesInformation.distances.get(0)[counter].getDistance();
-
 			ranking[counter] = UniversitiesInformation.universities.get(counter).getRanking();
 			tuition[counter] = UniversitiesInformation.universities.get(counter).getTuition();
 			uniSize[counter] = UniversitiesInformation.universities.get(counter).getUniSize();
@@ -67,48 +66,16 @@ public class MatchmakingAlgorithm {
 			factor++;
 
 			if (dropDownValue[factor] == 0)
-				if (distance[counter] <= 30)
-					score[counter] += slidersValue[factor];
-
-			if (dropDownValue[factor] == 1)
-				if (distance[counter] > 30 && distance[counter] < 150)
-					score[counter] += slidersValue[factor];
-				else if (distance[counter] >= 150 && distance[counter] < 300)
-					score[counter] += slidersValue[factor] / 2;
-
-			if (dropDownValue[factor] == 2)
-				if (distance[counter] > 30 && distance[counter] < 150)
-					score[counter] += slidersValue[factor] / 2;
-				else if (distance[counter] >= 150 && distance[counter] < 300)
-					score[counter] += slidersValue[factor];
-				else if (distance[counter] >= 300)
-					score[counter] += slidersValue[factor] / 2;
-
-			if (dropDownValue[factor] == 3)
-				if (distance[counter] >= 150 && distance[counter] < 300)
-					score[counter] += slidersValue[factor] / 2;
-				else if (distance[counter] >= 300)
-					score[counter] += slidersValue[factor];
-
-			factor++;
-
-			if (dropDownValue[factor] == 0)
 				if (tuition[counter] < 10000)
 					score[counter] += slidersValue[factor];
-				else if (tuition[counter] >= 10000 && tuition[counter] <= 15000)
-					score[counter] += slidersValue[factor] / 2;
 
 			if (dropDownValue[factor] == 1)
 				if (tuition[counter] >= 10000 && tuition[counter] <= 15000)
 					score[counter] += slidersValue[factor];
-				else if (tuition[counter] < 10000)
-					score[counter] += slidersValue[factor] * 2;
 
 			if (dropDownValue[factor] == 2)
 				if (tuition[counter] > 15000)
 					score[counter] += slidersValue[factor];
-				else if (tuition[counter] < 10000 || tuition[counter] > 15000)
-					score[counter] += slidersValue[factor] / 2;
 
 			factor++;
 
@@ -124,20 +91,34 @@ public class MatchmakingAlgorithm {
 			factor++;
 
 			if (dropDownValue[factor] == 0)
+				if (distance[counter] <= 30)
+					score[counter] += slidersValue[factor];
+
+			if (dropDownValue[factor] == 1)
+				if (distance[counter] > 30 && distance[counter] < 150)
+					score[counter] += slidersValue[factor];
+
+			if (dropDownValue[factor] == 2)
+				if (distance[counter] >= 150 && distance[counter] < 300)
+					score[counter] += slidersValue[factor];
+
+			if (dropDownValue[factor] == 3)
+				if (distance[counter] >= 300)
+					score[counter] += slidersValue[factor];
+
+			factor++;
+
+			if (dropDownValue[factor] == 0)
 				if (residence[counter] < 10000)
 					score[counter] += slidersValue[factor];
 
 			if (dropDownValue[factor] == 1)
 				if (residence[counter] >= 10000 && residence[counter] <= 12000)
 					score[counter] += slidersValue[factor];
-			if (residence[counter] < 10000)
-				score[counter] += slidersValue[factor] * 2;
 
 			if (dropDownValue[factor] == 2)
 				if (residence[counter] > 12000)
 					score[counter] += slidersValue[factor];
-				else
-					score[counter] += slidersValue[factor] * 2;
 
 			factor++;
 
@@ -148,21 +129,25 @@ public class MatchmakingAlgorithm {
 			else if (classSize[counter] > 300 && dropDownValue[factor] == 2)
 				score[counter] += slidersValue[factor];
 
+			System.out.println(score[counter]);
+
 		}
 
-		double greatest = score[0];
-		double secondGreatest = score[1];
+		double greatest = score[1];
+		double secondGreatest = score[0];
 
-		for (int counter = 0; counter < 13; counter++)
-			if (greatest < score[counter + 1]) {
+		for (int counter = 2; counter < 13; counter++)
+			if (greatest < score[counter]) {
 				secondGreatestIndex = greatestIndex;
 				secondGreatest = greatest;
-				greatestIndex = counter + 1;
-				greatest = score[counter + 1];
-			} else if (secondGreatest < score[counter + 1]) {
-				secondGreatestIndex = counter + 1;
-				secondGreatest = score[counter + 1];
+				greatestIndex = counter;
+				greatest = score[counter];
+			} else if (secondGreatest < score[counter]) {
+				secondGreatestIndex = counter;
+				secondGreatest = score[counter];
 			}
+
+		System.out.println();
 
 	}
 
