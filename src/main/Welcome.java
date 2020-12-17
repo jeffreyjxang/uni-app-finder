@@ -79,7 +79,11 @@ public class Welcome {
 		signInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (VerifyLogin.verifyLogin(usernameField.getText(), String.valueOf(passwordField.getPassword()))) {
+					CreateAccount.username = usernameField.getText();
+					CreateAccount.password = String.valueOf(passwordField.getPassword());
 					welcomePanel.setVisible(false);
+					CreateAccount.username = usernameField.getText();
+					CreateAccount.password = String.valueOf(passwordField.getPassword());
 					Dashboard.CreateDashboard();
 					Dashboard.dashboardPanel.setVisible(true);
 				} else {
@@ -100,6 +104,7 @@ public class Welcome {
 		createAccountButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		createAccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Welcome.GUI.setVisible(false);
 				new CreateAccount();
 
 			}

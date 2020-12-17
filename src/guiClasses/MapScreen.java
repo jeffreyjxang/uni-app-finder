@@ -63,8 +63,8 @@ public class MapScreen implements ActionListener {
 	private JButton goToDistance = new JButton();
 	private JButton goToMap = new JButton();
 	private ImageIcon ontarioMap = new ImageIcon(
-			new ImageIcon("./res/ontario-map.png").getImage().getScaledInstance(875 / 2, 611 / 2, 0));
-	private ImageIcon mapIcon = new ImageIcon(new ImageIcon("./res/map.png").getImage().getScaledInstance(600, 360, 0));
+			new ImageIcon("./resources/misc/ontario-map.png").getImage().getScaledInstance(875 / 2, 611 / 2, 0));
+	private ImageIcon mapIcon = new ImageIcon(new ImageIcon("./resources/misc/map.png").getImage().getScaledInstance(600, 360, 0));
 	private ImageIcon blackDot = new ImageIcon(new ImageIcon("./resources/misc/black-dot.png").getImage()
 			.getScaledInstance(105 / DOT_SIZE, 105 / DOT_SIZE, 0));
 
@@ -97,6 +97,7 @@ public class MapScreen implements ActionListener {
 				distancePanel.add(distance[i].getDot());
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Had issue loading mapCoords for each uni");
 		}
 	}
@@ -160,12 +161,12 @@ public class MapScreen implements ActionListener {
 
 		// cursor circle to indicate where the map has been clicked
 		JLabel circle = new JLabel();
-		circle.setIcon(new ImageIcon(new ImageIcon("./res/circle.png").getImage().getScaledInstance(50, 50, 0)));
+		circle.setIcon(new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
 		mapPanel.add(circle);
 
 		// screenshot of Google Map
 		map = new JLabel();
-		map.setIcon(new ImageIcon(new ImageIcon("./res/map.png").getImage().getScaledInstance(600, 360, 0)));
+		map.setIcon(new ImageIcon(new ImageIcon("./resources/misc/map.png").getImage().getScaledInstance(600, 360, 0)));
 		map.setBounds(80, 100, 600, 360);
 		map.setBorder(BorderFactory.createLineBorder(Colour.strongHighlight, 5)); // border covers the JLabel ):);
 		map.addMouseListener(new MouseListener() {
@@ -195,7 +196,7 @@ public class MapScreen implements ActionListener {
 		mapPanel.add(map);
 
 		// loading gif
-		gif.setIcon(new ImageIcon(new ImageIcon("./res/load.gif").getImage().getScaledInstance(100, 100, 0)));
+		gif.setIcon(new ImageIcon(new ImageIcon("./resources/misc/load.gif").getImage().getScaledInstance(100, 100, 0)));
 		gif.setBounds(750, 225, 100, 100);
 		gif.setVisible(false);
 		mapPanel.add(gif);
@@ -262,7 +263,7 @@ public class MapScreen implements ActionListener {
 
 		// cursor circle to indicate where the map has been clicked on the mapPreview
 		mapPreviewCircle
-				.setIcon(new ImageIcon(new ImageIcon("./res/circle.png").getImage().getScaledInstance(50, 50, 0)));
+				.setIcon(new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
 		mapPreviewCircle.setBounds(700 + 25, 20 + 25, 50, 50);
 		mapPreviewCircle.setVisible(false);
 		distancePanel.add(mapPreviewCircle);

@@ -11,7 +11,6 @@ public class Launcher {
 		Welcome.GUI.setVisible(true);
 
 		UniversitiesInformation.setUniversities();
-
 	}
 
 }
