@@ -80,6 +80,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 		combobox1.setBounds(20, 80, 200, 40);
 		combobox1.addActionListener(this);
 		combobox1.setVisible(true);
+		combobox1.setBackground(Colour.strike);
+		combobox1.setBorder(BorderFactory.createLineBorder(Colour.strike));
 		overallPanel.add(combobox1);
 
 		// setting up the sorting combobox(adding the options)
@@ -89,6 +91,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 		combobox2.setBounds(300, 80, 200, 40);
 		combobox2.addActionListener(this);
 		combobox2.setVisible(true);
+		combobox2.setBackground(Colour.strike);
+
+		combobox2.setBorder(BorderFactory.createLineBorder(Colour.strike));
 		overallPanel.add(combobox2);
 
 		sortBy.setBounds(300, 50, 100, 30);
@@ -106,22 +111,33 @@ public class AllPrograms extends JPanel implements ActionListener {
 		nextBtn.setBounds(400, 180, 100, 50);
 		nextBtn.addActionListener(this);
 		nextBtn.setVisible(true);
+		nextBtn.setBackground(Colour.strike);
+
+		nextBtn.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(nextBtn);
 
 		backBtn.setText("Back");
 		backBtn.setBounds(300, 180, 100, 50);
 		backBtn.addActionListener(this);
 		backBtn.setVisible(true);
+		backBtn.setBackground(Colour.strike);
+
+		backBtn.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(backBtn);
 
 		resetButton.setText("Reset");
 		resetButton.setBounds(150, 210, 70, 35);
 		resetButton.addActionListener(this);
 		resetButton.setVisible(true);
+		resetButton.setBackground(Colour.strike);
+
+		resetButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(resetButton);
 
 		keyword.setBounds(20, 180, 200, 30);
 		keyword.addActionListener(this);
+		keyword.setBackground(Colour.strike);
+		keyword.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(keyword);
 
 		searchLabel.setBounds(20, 150, 50, 30);
@@ -130,6 +146,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		searchButton.setBounds(20, 210, 100, 35);
 		searchButton.addActionListener(this);
+		searchButton.setBackground(Colour.strike);
+		searchButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
+
 
 		currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
 		currentLocation.setBounds(500, 15, 90, 50);
@@ -140,7 +159,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		website.setText("Website");
 		website.setBounds(470, 285, 100, 30);
-		website.setForeground(Colour.strongHighlight);
+
+		website.setBackground(Colour.strike);
+		website.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		website.addActionListener(this);
 		overallPanel.add(website);
 		setVisible(true);
@@ -186,11 +207,11 @@ public class AllPrograms extends JPanel implements ActionListener {
 		// COMBOBOX1 is the combobox where you can individually select a university to
 		// look at
 		if (event.getSource() == combobox1) {
-			reversed = false;
-			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
-			alphaSort();
 
 			if (combobox1.getSelectedIndex() != 0) {
+				reversed = false;
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
+				alphaSort();
 				int comboboxIndex = combobox1.getSelectedIndex();
 				overallPanel.remove(uniPanel);
 				currentPage = comboboxIndex-1;
@@ -208,68 +229,81 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		// "next" button
 		if (event.getSource() == nextBtn) {
-			totalMoves += 1;
-			currentPage += 1;
-			if (currentPage == maxIndex) {
-				currentPage = 0;
-			}
-			if (currentPage == -1) {
-				currentPage = maxIndex;
-			}
-			overallPanel.remove(uniPanel);
+			if (customList.size() != 1) {
+				totalMoves += 1;
+				currentPage += 1;
+				if (currentPage == maxIndex) {
+					currentPage = 0;
+				}
+				if (currentPage == -1) {
+					currentPage = maxIndex;
+				}
+				for (University uni : uniArrayCopy) {
+					System.out.println(uni.getName());
+				}
+				overallPanel.remove(uniPanel);
 
-			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
-			uniPanel.setBounds(590, 0, 400, 500);
-			combobox1.setSelectedIndex(0);
-			currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
+				System.out.println("Current name" + uniArrayCopy.get(currentPage).getName());
+				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+				uniPanel.setBounds(590, 0, 400, 500);
+				combobox1.setSelectedIndex(0);
+				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 
-			overallPanel.add(uniPanel);
-			currentLocation.repaint();
-			combobox1.repaint();
+				overallPanel.add(uniPanel);
+				currentLocation.repaint();
+				combobox1.repaint();
+			}
 
 			overallPanel.repaint();
-
 		}
 		// "back" button
 		if (event.getSource() == backBtn) {
+			if (customList.size() != 1) {
+				currentPage -= 1;
+				System.out.println(maxIndex);
+				if (currentPage == -1) {
+					currentPage = maxIndex - 1;
+				}
+				if (currentPage == maxIndex) {
+					currentPage = 0;
+				}
+				overallPanel.remove(uniPanel);
 
-			currentPage -= 1;
-			if (currentPage == -1) {
-				currentPage = maxIndex - 1;
+				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+
+				uniPanel.setBounds(590, 0, 400, 500);
+
+				overallPanel.add(uniPanel);
+				combobox1.repaint();
+				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
+				currentLocation.repaint();
+				overallPanel.repaint();
 			}
-			if (currentPage == maxIndex) {
-				currentPage = 0;
-			}
-			overallPanel.remove(uniPanel);
-
-			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
-
-			uniPanel.setBounds(590, 0, 400, 500);
-
-			overallPanel.add(uniPanel);
-			combobox1.repaint();
-			currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
-			currentLocation.repaint();
-			overallPanel.repaint();
-
 		}
 		if (event.getSource() == resetButton) {
-			maxIndex = 14;
-			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
-			keyword.setText("");
-			currentPage = 0;
-			overallPanel.remove(uniPanel);
+			if (customList.size() != 1) {
+				maxIndex = 14;
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
+				keyword.setText("");
+				currentPage = 0;
+				overallPanel.remove(uniPanel);
 
-			// creates a new unipanel(top right corner), and changes the picture
-			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+				// creates a new unipanel(top right corner), and changes the picture
+				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 
-			uniPanel.setBounds(590, 0, 400, 500);
-			overallPanel.add(uniPanel);
+				uniPanel.setBounds(590, 0, 400, 500);
+				overallPanel.add(uniPanel);
 
-			combobox2.setSelectedIndex(0);
-			currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
-			currentLocation.repaint();
-			overallPanel.repaint();
+				combobox2.setSelectedIndex(0);
+				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
+				nextBtn.setBackground(Colour.lightBg);
+				backBtn.setBackground(Colour.lightBg);
+
+				nextBtn.setEnabled(false);
+				backBtn.setEnabled(false);
+				currentLocation.repaint();
+				overallPanel.repaint();
+			}
 		}
 
 		if (event.getSource() == website) {
@@ -306,14 +340,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 					System.out.println(uniClass.getUniversities().get(i).getName());
 				}
 			}
-
-			// checks if what the user entered falls into a list of keywords associated with
-			// the university
-			for (University unis : uniClass.getUniversities()) {
-				String keywords;
-				keywords = unis.getKeywords();
-
-			}
 			// shows a no matches label if there are no matches
 			if (customList.size() == 0) {
 				searchFailed.setText("No Matches");
@@ -324,12 +350,14 @@ public class AllPrograms extends JPanel implements ActionListener {
 				searchFailedTF = true;
 				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			} else if (text.equalsIgnoreCase("")) {
+				System.out.println("NONE");
 				maxIndex = 14;
 				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			}
 
 			// updates the uriarraycopy with the matching universities
 			else {
+				System.out.println("MATCHED");
 				if (searchFailedTF)
 					overallPanel.remove(searchFailed);
 				searchFailedTF = false;
@@ -342,7 +370,11 @@ public class AllPrograms extends JPanel implements ActionListener {
 				uniPanel.setBounds(590, 0, 400, 500);
 				combobox2.setSelectedIndex(0);
 				combobox2.repaint();
+				nextBtn.setBackground(gray);
+				backBtn.setBackground(gray);
 
+				nextBtn.setEnabled(false);
+				backBtn.setEnabled(false);
 				overallPanel.add(uniPanel);
 
 			}
