@@ -156,7 +156,7 @@ public class Dashboard extends JPanel {
 		taskbarPanel.add(signOutButton);
 
 		// Create intro screen
-		JLabel titleLabel2 = new JLabel("School Finder");
+		JLabel titleLabel2 = new JLabel("App Name");
 		titleLabel2.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		titleLabel2.setForeground(Colour.strongHighlight);
 		titleLabel2.setHorizontalAlignment(SwingConstants.CENTER);
