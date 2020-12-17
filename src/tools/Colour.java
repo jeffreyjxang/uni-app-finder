@@ -8,4 +8,5 @@ public class Colour {
     public static Color strike = Color.decode("#93C2D8"); //light blue
     public static Color highlight = Color.decode("#9C4668"); //red
     public static Color strongHighlight = Color.decode("#FF8AE2"); //pink
+    public static Color contrast = Color.decode("#FFA500"); // orange
 }
