@@ -60,7 +60,7 @@ public class SurveyScreen {
 		String[] q0answerList = { "Select one", "Lego", "Video games", "Remote vehicles", "Building planes" };
 		q0answers = new JComboBox(q0answerList); // combo box to store answers
 		q0answers.setSelectedIndex(0); // set the beginning answer to "Select one"
-		q0answers.setBounds(300, 135, 150, 25); // place button
+		q0answers.setBounds(295, 135, 160, 25); // place button
 		survey.add(q0answers); // add button onto panel
 		q0answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,7 +88,7 @@ public class SurveyScreen {
 		String[] q1answerList = { "Select one", "Tinkerer", "Outdoorsy", "Logical", "Adventurous", "Crafty" };
 		q1answers = new JComboBox(q1answerList);
 		q1answers.setSelectedIndex(0);
-		q1answers.setBounds(300, 235, 150, 25);
+		q1answers.setBounds(295, 235, 160, 25);
 		survey.add(q1answers);
 		q1answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +116,7 @@ public class SurveyScreen {
 				"Physics" };
 		q2answers = new JComboBox(q2answerList);
 		q2answers.setSelectedIndex(0);
-		q2answers.setBounds(300, 335, 150, 25);
+		q2answers.setBounds(295, 335, 160, 25);
 		survey.add(q2answers);
 		q2answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,7 +144,7 @@ public class SurveyScreen {
 				"Testing water samples", "Visiting construction site" };
 		q3answers = new JComboBox(q3answerList);
 		q3answers.setSelectedIndex(0);
-		q3answers.setBounds(750, 135, 150, 25);
+		q3answers.setBounds(745, 135, 160, 25);
 		survey.add(q3answers);
 		q3answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -171,7 +171,7 @@ public class SurveyScreen {
 		String[] q4answerList = { "Select one", "National Park", "Airshow", "Big city", "Theme park", "Home" };
 		q4answers = new JComboBox(q4answerList);
 		q4answers.setSelectedIndex(0);
-		q4answers.setBounds(750, 235, 150, 25);
+		q4answers.setBounds(745, 235, 160, 25);
 		survey.add(q4answers);
 		q4answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -199,7 +199,7 @@ public class SurveyScreen {
 				"Designing a future city", "Invent solar power phones", "Writing board game rules" };
 		q5answers = new JComboBox(q5answerList);
 		q5answers.setSelectedIndex(0);
-		q5answers.setBounds(750, 335, 150, 25);
+		q5answers.setBounds(745, 335, 160, 25);
 		survey.add(q5answers);
 		q5answers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

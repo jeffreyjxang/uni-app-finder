@@ -9,7 +9,6 @@ public class Launcher {
 		// Create and launch first screen
 		Welcome.CreateWelcome();
 		Welcome.GUI.setVisible(true);
-		System.out.println("git check");
 
 		UniversitiesInformation.setUniversities();
 
