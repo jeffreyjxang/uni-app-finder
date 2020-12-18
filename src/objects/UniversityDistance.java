@@ -22,21 +22,53 @@ public class UniversityDistance implements Comparable<UniversityDistance> {
 		this.name = name;
 		this.distance = distance;
 	}
-	public void setDistance(double distance) { this.distance = distance; }
-	public void setX(int x) { this.x = x; }
-	public void setY(int y) { this.y = y; }
-	public int getX() { return x; }
-	public int getY() { return y; }
+
+	// modifies the built-in compareTo method to compare distances in increasing
+	// order (small --> big)
+	@Override
+	public int compareTo(UniversityDistance uni) {
+		return Double.compare(distance, uni.distance);
+	}
+
+	// modifies the built-in toString method to easily visualize the fields of the
+	// UniversityDistance object
+	@Override
+	public String toString() {
+		return name + " | " + distance + "km";
+	}
+
+	//getter setter methods
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	public void setVisibility(boolean visibility) {
 		this.visibility = visibility;
 	}
-	public void reinit() {
-		button = new JButton();
-	}
+
 	public boolean getVisbility() {
 		return visibility;
 	}
-	public String getName() { return name; }
+
+	public String getName() {
+		return name;
+	}
 
 	public JLabel getDot() {
 		return dot;
@@ -64,19 +96,5 @@ public class UniversityDistance implements Comparable<UniversityDistance> {
 
 	public double getDistance() {
 		return distance;
-	}
-
-	// modifies the built-in compareTo method to compare distances in increasing
-	// order (small --> big)
-	@Override
-	public int compareTo(UniversityDistance uni) {
-		return Double.compare(distance, uni.distance);
-	}
-
-	// modifies the built-in toString method to easily visualize the fields of the
-	// UniversityDistance object
-	@Override
-	public String toString() {
-		return name + " | " + distance + "km";
 	}
 }
