@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.VerifyLogin;
 import tools.Colour;
 
 public class Welcome {

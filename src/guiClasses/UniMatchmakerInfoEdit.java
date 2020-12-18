@@ -20,6 +20,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import main.VerifyLogin;
 import tools.Colour;
 
 /*

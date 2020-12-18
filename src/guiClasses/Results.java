@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import main.MatchmakingAlgorithm;
 import objects.UniversitiesInformation;
 import tools.Colour;
 
