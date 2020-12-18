@@ -4,12 +4,8 @@ import objects.UniversitiesInformation;
 import objects.University;
 import objects.User;
 import tools.Colour;
-import javax.swing.AbstractButton;
 
 import javax.swing.*;
-
-import jdk.dynalink.linker.ConversionComparator.Comparison;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +13,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import jdk.dynalink.linker.ConversionComparator.Comparison;
 
 import static java.awt.Color.*;
 
@@ -49,7 +46,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	private JLabel currentLocation = new JLabel();
 	private JButton website = new JButton();
 	private JButton bookmark = new JButton();
-	private boolean doCheck = true;
+	private int totalMoves = 0;
 
 	// constructor to setup the GUI screen
 	public AllPrograms() {
@@ -60,9 +57,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 		overallPanel.setBackground(Colour.bg);
 		// Setting up the GUI panel
 		UniversitiesInformation.setUniversities();
-
-		setLayout(null);
 		uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
+		setLayout(null);
+
 		uniPanel = createUniPanel(uniArrayCopy.get(0));
 		uniPanel.setBounds(590, 0, 400, 700);
 		uniPanel.setBackground(Colour.bg);
@@ -180,37 +177,31 @@ public class AllPrograms extends JPanel implements ActionListener {
 		if (event.getSource() == combobox2) {
 
 			if (combobox2.getSelectedIndex() == 0) { // if its A-Z
-				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				alphaSort();
 				reversed = false;
 			} else if (combobox2.getSelectedIndex() == 1) { // if its Z-A
-				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				alphaSort();
 				reverse();
 				reversed = true;
 				currentPage = 0;
 			} else if (combobox2.getSelectedIndex() == 2) { // Low to High, Average
-				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				insertionSort();
 			} else if (combobox2.getSelectedIndex() == 3) { // high to low, average
-				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				insertionSort();
 				reverse();
 				reversed = true;
-			} else if (combobox2.getSelectedIndex() == 4) { // bookmarked universities
+			} else if (combobox2.getSelectedIndex() == 4) {
 				uniArrayCopy.clear();
 				if (User.bookmarked.size() <= 0) {
 					JOptionPane.showMessageDialog(overallPanel, "Bookmark some universities first!");
 				} else {
 					for (int x = 0; x < User.bookmarked.size(); x++) {
-						doCheck = false;
 						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
 						// the uniArrayCopy
-						doCheck = true;
-
 					}
 				}
 			}
+
 			currentPage = 0;
 			overallPanel.remove(uniPanel);
 
@@ -250,6 +241,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		if (event.getSource() == nextBtn) {
 			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
+				totalMoves += 1;
 				currentPage += 1;
 				if (currentPage == maxIndex) {
 					currentPage = 0;
@@ -297,7 +289,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 		if (event.getSource() == resetButton) {
-			maxIndex = uniArrayCopy.size();
+			maxIndex = 14;
 			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 			keyword.setText("");
 			currentPage = 0;
@@ -398,21 +390,18 @@ public class AllPrograms extends JPanel implements ActionListener {
 			overallPanel.repaint();
 
 		}
-		if (event.getSource() == bookmark) {
-			System.out.println("here");
-			if (doCheck) {
-				if (bookmark.getText().equals("Bookmark University")) {
-					System.out.println("here1");
-					User.bookmarked.add(uniArrayCopy.get(currentPage));
-					bookmark.setText("Bookmarked!");
-				} else {
-					System.out.println("here2");
-					User.bookmarked.remove(uniArrayCopy.get(currentPage));
-					bookmark.setText("Bookmark University");
-				}
-				repaint();
-			}
 
+		if (event.getSource() == bookmark) {
+			System.out.println(uniArrayCopy.get(currentPage).getName());
+			if (!uniArrayCopy.get(currentPage).getisBookmarked()) {
+				System.out.println("here 1");
+				User.bookmarked.add(uniArrayCopy.get(currentPage));
+				bookmark.setText("Bookmarked!");
+			} else {
+				System.out.println("here 2");
+				User.bookmarked.remove(uniArrayCopy.get(currentPage));
+				bookmark.setText("Bookmark University");
+			}
 		}
 	}
 
@@ -431,7 +420,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(400, 700);
+		panel.setSize(400, 500);
 		JLabel nameLabel = new JLabel();
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
@@ -468,7 +457,12 @@ public class AllPrograms extends JPanel implements ActionListener {
 			bookmark.addActionListener(this);
 		}
 
-		repaint();
+		uni.setBookmarked(User.bookmarked.contains(uni));
+		bookmark.setBounds(0, 380, 170, 50);
+		bookmark.setBackground(Colour.strike);
+		bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
+		bookmark.addActionListener(this);
+
 		comparison.setBounds(0, 450, 150, 30);
 		comparison.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
 		comparison.setForeground(Colour.strongHighlight);
@@ -511,12 +505,14 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 
 		panel.add(comparisonStatement);
+
+		panel.add(bookmark);
 		panel.add(nameLabel);
 		panel.add(logo);
 		panel.add(nationalRankLabel);
 		panel.add(infoLabel);
-		panel.add(bookmark);
 		panel.add(comparison);
+		panel.add(comparisonStatement);
 		picture.setIcon(uniArrayCopy.get(currentPage).getIcon());
 		picture.setVisible(true);
 		panel.setBackground(Colour.bg);
