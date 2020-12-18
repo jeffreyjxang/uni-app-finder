@@ -19,9 +19,16 @@ import guiClasses.MapScreen;
 import objects.UniversitiesInformation;
 import tools.Colour;
 
+/*
+ * The class UniMatchmaker is the GUI class that display the user's grades, courses
+ * and external university preferences.
+ */
 public class UniMatchmaker extends JPanel {
 
+	// Public variable
 	public static JPanel accountPanel;
+
+	// GUI
 	private static JLabel[] courseLabel = new JLabel[6];
 	private static JLabel[] headings = new JLabel[6];
 	private static JLabel[] factorValue = new JLabel[6];
@@ -29,6 +36,7 @@ public class UniMatchmaker extends JPanel {
 
 	public static void CreateAccount() {
 
+		// Create border variable
 		Border border = BorderFactory.createLineBorder(Colour.strongHighlight, 3);
 
 		// Create panel
@@ -38,6 +46,7 @@ public class UniMatchmaker extends JPanel {
 		accountPanel.setLayout(null);
 		accountPanel.setVisible(true);
 
+		// Create panel to hold courses and grades
 		JPanel coursesPanel = new JPanel();
 		coursesPanel.setBounds(10, 90, 300, 510);
 		coursesPanel.setBackground(Colour.bg);
@@ -45,6 +54,7 @@ public class UniMatchmaker extends JPanel {
 		coursesPanel.setBorder(border);
 		accountPanel.add(coursesPanel);
 
+		// Create panel to hold external factors
 		JPanel externalPanel = new JPanel();
 		externalPanel.setBounds(325, 90, 590, 510);
 		externalPanel.setBackground(Colour.bg);
@@ -73,7 +83,7 @@ public class UniMatchmaker extends JPanel {
 		courseGradeLabel.setBounds(25, 15, 280, 40);
 		coursesPanel.add(courseGradeLabel);
 
-		// Create edit buttons
+		// Create edit button
 		JButton editButton = new JButton("Edit");
 		editButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		editButton.setBackground(Colour.strike);
@@ -86,6 +96,7 @@ public class UniMatchmaker extends JPanel {
 		});
 		accountPanel.add(editButton);
 
+		// Create result button
 		JButton resultsButton = new JButton("Results");
 		resultsButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resultsButton.setBackground(Colour.strike);
