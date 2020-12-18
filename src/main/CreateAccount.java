@@ -93,7 +93,6 @@ public class CreateAccount extends JFrame implements ActionListener {
 		createAccountBtn = new JButton("Create Account");
 		createAccountBtn.setBounds(10, 247, 130, 23);
 		createAccountBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		createAccountBtn.setForeground(Colour.highlight);
 		createAccountBtn.setBackground(Colour.strike);
 		createAccountBtn.addActionListener(this);
 		contentPane.add(createAccountBtn);
@@ -101,7 +100,6 @@ public class CreateAccount extends JFrame implements ActionListener {
 		returnBtn = new JButton("Return");
 		returnBtn.setBounds(135, 333, 100, 23);
 		returnBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		returnBtn.setForeground(Colour.highlight);
 		returnBtn.setBackground(Colour.strike);
 		returnBtn.addActionListener(this);
 		contentPane.add(returnBtn);
