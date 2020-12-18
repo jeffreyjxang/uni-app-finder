@@ -206,6 +206,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 					for (int x = 0; x < User.bookmarked.size(); x++) {
 						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
 																		// the uniArrayCopy
+
 					}
 				}
 			}
@@ -397,27 +398,18 @@ public class AllPrograms extends JPanel implements ActionListener {
 			overallPanel.repaint();
 
 		}
-		// Adds the university to the user's bookmarked list
 		if (event.getSource() == bookmark) {
 			if (bookmark.getText() == "Bookmark University") {
 				User.bookmarked.add(uniArrayCopy.get(currentPage));
 				bookmark.setText("Bookmarked!");
+				}
+				repaint();
 			} else {
 				User.bookmarked.remove(uniArrayCopy.get(currentPage));
 				bookmark.setText("Bookmark University");
 			}
-			if (currentPage % 2 == 1) {
-				if (bookmark.getText() == "Bookmark University") {
-					User.bookmarked.add(uniArrayCopy.get(currentPage));
-					bookmark.setText("Bookmarked!");
-				} else {
-					User.bookmarked.remove(uniArrayCopy.get(currentPage));
-					bookmark.setText("Bookmark University");
-				}
-			}
 
 		}
-	}
 
 	// reverses the uniarraycopy
 	public void reverse() {
@@ -474,8 +466,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		comparison.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
 		comparison.setForeground(Colour.strongHighlight);
 
-		// If they have saved the preferences tab, it will display a comparison statement reffering to the users average
-		// and the university's cutoff/average.
 		if (!(UniMatchmakerInfoEdit.save)) {
 			comparisonStatement
 					.setText("<html>Go to preferences tab to see how your averages compare to the universities.<html>");
@@ -485,7 +475,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		} else if (UniMatchmakerInfoEdit.save) {
 			double average = 0;
-			for (int x = 0; x < 6; x++) {	// Calculates the average
+			for (int x = 0; x < 6; x++) {
 				average += Integer.parseInt(UniMatchmakerInfoEdit.gradeTextField[x].getText());
 			}
 			average = average / 6;
