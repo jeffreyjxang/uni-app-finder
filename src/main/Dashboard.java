@@ -1,6 +1,7 @@
 package main;
 
 import guiClasses.AllPrograms;
+import guiClasses.HelpScreen;
 import guiClasses.MapScreen;
 import guiClasses.SurveyResults;
 import guiClasses.SurveyScreen;
@@ -175,6 +176,13 @@ public class Dashboard extends JPanel {
 
 		// Create taskbar button
 		JButton helpButton2 = new JButton("Help");
+		helpButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dashboardPanel.setVisible(false);
+				HelpScreen.CreateHelp();
+				HelpScreen.helpPanel.setVisible(true);
+			}
+		});
 		helpButton2.setBounds(45, 500, 120, 25);
 		taskbarPanel.add(helpButton2);
 

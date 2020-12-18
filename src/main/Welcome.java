@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import guiClasses.HelpScreen;
 import tools.Colour;
 
 public class Welcome {
@@ -28,6 +29,9 @@ public class Welcome {
 	// Private variables
 	private static final int SCREEN_WIDTH = 648;
 	private static final int SCREEN_HEIGHT = 1152;
+
+	// Public variable
+	public static boolean signIn;
 
 	/*
 	 * @wbp.parser.entryPoint ^^ Allows me to use window builder
@@ -86,6 +90,7 @@ public class Welcome {
 					CreateAccount.password = String.valueOf(passwordField.getPassword());
 					Dashboard.CreateDashboard();
 					Dashboard.dashboardPanel.setVisible(true);
+					signIn = true;
 				} else {
 					usernameField.setText("");
 					passwordField.setText("");
@@ -119,6 +124,13 @@ public class Welcome {
 
 		// Create help button
 		JButton helpButton = new JButton("Help");
+		helpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HelpScreen.CreateHelp();
+				HelpScreen.helpPanel.setVisible(true);
+				Welcome.welcomePanel.setVisible(false);
+			}
+		});
 		helpButton.setFont(new Font("Georgia", Font.BOLD, 16));
 		helpButton.setBounds(775, 450, 140, 30);
 		helpButton.setForeground(Colour.strongHighlight);
