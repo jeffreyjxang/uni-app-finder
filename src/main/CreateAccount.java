@@ -130,6 +130,11 @@ public class CreateAccount extends JFrame implements ActionListener {
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
+			} else if (userNameField.getText().equals("") || password.equals("")) {
+				JOptionPane.showMessageDialog(contentPane, "Everything must be filled in!");
+				userNameField.setText("");
+				passwordField.setText("");
+				confirmPasswordField.setText("");
 			} else {
 				try {
 					VerifyLogin.saveLogin(username, password);
