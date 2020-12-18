@@ -264,7 +264,7 @@ public class SurveyScreen {
 
 		// Button for when the user is ready to proceed
 		progressButtons = new JButton("Done");
-		progressButtons.setBounds(800, 500, 100, 50);
+		progressButtons.setBounds(750, 500, 100, 40);
 		progressButtons.setBackground(Colour.strike);
 		// progressButtons[1].addActionListener(this);
 		survey.add(progressButtons);

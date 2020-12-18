@@ -415,6 +415,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 	}
+
 	// reverses the uniarraycopy
 	public void reverse() {
 		ArrayList<University> temp = new ArrayList<>(14);
@@ -451,7 +452,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		infoLabel.setBounds(0, 120, 300, 375);
 		infoLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
-
 
 		if (User.bookmarked.contains(uni)) {
 
@@ -572,6 +572,5 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 		return text;
 	}
-
 
 }

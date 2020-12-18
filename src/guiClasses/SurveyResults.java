@@ -35,7 +35,7 @@ public class SurveyResults extends JPanel {
 		surveyResults.setBackground(Colour.bg);
 
 		JButton progressButton = new JButton("Back");
-		progressButton.setBounds(800, 500, 100, 50);
+		progressButton.setBounds(750, 500, 100, 40);
 		progressButton.setBackground(Colour.strike);
 		surveyResults.add(progressButton);
 		progressButton.addActionListener(new ActionListener() {
