@@ -59,7 +59,7 @@ public class MapScreen implements ActionListener {
 	private JLabel mapPreviewCircle = new JLabel();
 	private JLabel dot = new JLabel();
 	private JLabel result[] = new JLabel[14];
-	private JTextArea text = new JTextArea();
+	public static JTextArea text = new JTextArea();
 	private JButton goToDistance = new JButton();
 	private JButton goToMap = new JButton();
 	private ImageIcon ontarioMap = new ImageIcon(

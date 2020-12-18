@@ -208,24 +208,24 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		if (VerifyLogin.verifyInformation()) {
 			int index = 0;
 			ArrayList<String> Information = VerifyLogin.loadInformation();
+			
 			for (int x = 0; x < 6; x++) {
 				gradeTextField[x].setText(Information.get(index));
-				index++;
+				++index;;
 			}
 			for (int x = 0; x < 6; x++) {
 				courseTextField[x].setText(Information.get(index));
-				index++;
+				++index;
 			}
 			for (int x = 0; x < 6; x++) {
 				dropDownLists[x].setSelectedIndex(Integer.parseInt(Information.get(index)));
-				index++;
+				++index;
 			}
 			for (int x = 0; x < 6; x++) {
 				sliders[x].setValue(Integer.parseInt(Information.get(index)));
-				index++;
+				++index;
 			}
-
-		}
+		} 
 	}
 
 }
