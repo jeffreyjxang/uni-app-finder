@@ -96,6 +96,14 @@ public class Results extends JPanel {
 		});
 		resultsPanel.add(backButton);
 
+		// Create average label
+		JLabel average = new JLabel();
+		average.setText(String.format("Your Average: %.2f%%", MatchmakingAlgorithm.personAverage));
+		average.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		average.setForeground(Colour.strike);
+		average.setBounds(700, 30, 200, 30);
+		resultsPanel.add(average);
+
 		// Variables
 		int[] num = new int[2];
 		num[0] = MatchmakingAlgorithm.greatestIndex;
