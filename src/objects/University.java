@@ -21,6 +21,7 @@ public class University {
 	private ImageIcon logo;
 	private String link;
 	private Image image;
+	private boolean isBookmarked;
 
 	public Image getImage() {
 		return image;
@@ -171,4 +172,12 @@ public class University {
 	public String getLink() { return link; }
 
 	public void setLink(String link) {this.link = link; }
+
+	public boolean getisBookmarked() {
+		return isBookmarked;
+	}
+
+	public void setBookmarked(boolean bookmarked) {
+		isBookmarked = bookmarked;
+	}
 }
