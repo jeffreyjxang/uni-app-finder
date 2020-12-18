@@ -482,7 +482,6 @@ public class MapScreen implements ActionListener {
 					lon = LONGITUDE_LEFT
 							- (double) (x - map.getX()) / map.getWidth() * (LONGITUDE_LEFT - LONGITUDE_RIGHT);
 				}
-				System.out.printf("(lat, lon) = (%f, %f)\n", lat, lon);
 				return null;
 			}
 

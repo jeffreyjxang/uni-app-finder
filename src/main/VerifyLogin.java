@@ -209,7 +209,6 @@ public class VerifyLogin {
 			while (input1.hasNextLine() && !found) {
 				tempUsername = input1.next();
 				tempPassword = input1.next();
-				System.out.println(tempUsername);
 				// Checking if their username exists in the text file
 				if (tempUsername.trim().equals(CreateAccount.username.trim())
 						&& tempPassword.trim().equals(CreateAccount.password.trim())) {
