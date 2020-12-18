@@ -14,9 +14,16 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import jdk.dynalink.linker.ConversionComparator.Comparison;
-
 import static java.awt.Color.*;
 
+
+/*
+ * The AllPrograms class creates a JPanel that will display to the user
+ * all of the programs, 1 by 1. It allows the user to sort either alphabetically, or
+ * by average, and in reverse respectively. It displays a basic description about the
+ * university, their national rank, a picture, and whether the user's grades
+ * would be enough to get in.
+ */
 public class AllPrograms extends JPanel implements ActionListener {
 
 	private JLabel title = new JLabel("All Programs");
@@ -74,7 +81,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			combobox1.addItem(uni.getName());
 		}
 		// setting up the picture
-		picture.setIcon(uniArrayCopy.get(0).getIcon());
+		picture.setIcon(new ImageIcon(uniArrayCopy.get(0).getIconImage()));
 		picture.setBounds(20, 200, 700, 500);
 		picture.setForeground(white);
 		overallPanel.add(picture);
@@ -115,7 +122,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		nextBtn.addActionListener(this);
 		nextBtn.setVisible(true);
 		nextBtn.setBackground(Colour.strike);
-
 		nextBtn.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(nextBtn);
 
@@ -124,7 +130,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		backBtn.addActionListener(this);
 		backBtn.setVisible(true);
 		backBtn.setBackground(Colour.strike);
-
 		backBtn.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(backBtn);
 
@@ -133,10 +138,10 @@ public class AllPrograms extends JPanel implements ActionListener {
 		resetButton.addActionListener(this);
 		resetButton.setVisible(true);
 		resetButton.setBackground(Colour.strike);
-
 		resetButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(resetButton);
 
+		//Textfield for searching
 		keyword.setBounds(20, 180, 200, 30);
 		keyword.addActionListener(this);
 		keyword.setBackground(Colour.strike);
@@ -147,11 +152,13 @@ public class AllPrograms extends JPanel implements ActionListener {
 		searchLabel.setForeground(Colour.strongHighlight);
 		overallPanel.add(searchLabel);
 
+		//Button to begin search
 		searchButton.setBounds(20, 210, 100, 35);
 		searchButton.addActionListener(this);
 		searchButton.setBackground(Colour.strike);
 		searchButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 
+		//Current location within the array, shown at the top
 		currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 		currentLocation.setBounds(500, 15, 90, 50);
 		currentLocation.setFont(new Font(title.getFont().getName(), Font.PLAIN, 24));
@@ -159,9 +166,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 		overallPanel.add(currentLocation);
 		overallPanel.add(searchButton);
 
+		//Link to the website
 		website.setText("Website");
 		website.setBounds(470, 285, 100, 30);
-
 		website.setBackground(Colour.strike);
 		website.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		website.addActionListener(this);
@@ -190,7 +197,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 				insertionSort();
 				reverse();
 				reversed = true;
-			} else if (combobox2.getSelectedIndex() == 4) {
+			} else if (combobox2.getSelectedIndex() == 4) {//bookmarked universities
 				uniArrayCopy.clear();
 				if (User.bookmarked.size() <= 0) {
 					JOptionPane.showMessageDialog(overallPanel, "Bookmark some universities first!");
@@ -199,8 +206,17 @@ public class AllPrograms extends JPanel implements ActionListener {
 						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
 						// the uniArrayCopy
 					}
+					int index = 0;
+						while (index < uniArrayCopy.size()-1) {
+							if (uniArrayCopy.get(index).getName().equals(uniArrayCopy.get(index + 1).getName())) {
+								uniArrayCopy.remove(index + 1);
+							}else {
+								index++;
+								}
+						}
+					}
 				}
-			}
+
 
 			currentPage = 0;
 			overallPanel.remove(uniPanel);
@@ -237,7 +253,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 
-		// "next" button
+		// "next" button, goes forward 1 in the array
 		if (event.getSource() == nextBtn) {
 			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
@@ -264,7 +280,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 			overallPanel.repaint();
 		}
-		// "back" button
+		// "back" button, goes back 1 in the array
 		if (event.getSource() == backBtn) {
 			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
@@ -288,6 +304,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 				overallPanel.repaint();
 			}
 		}
+
+		//Button to reset the screen
 		if (event.getSource() == resetButton) {
 			maxIndex = 14;
 			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
@@ -315,6 +333,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 
+		//Button to link the user to the university website
 		if (event.getSource() == website) {
 			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 				try {
@@ -391,21 +410,19 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 
+		//If the bookmark button is pressed (adds the university to another array, and changes the text
 		if (event.getSource() == bookmark) {
-			System.out.println(uniArrayCopy.get(currentPage).getName());
 			if (!uniArrayCopy.get(currentPage).getisBookmarked()) {
-				System.out.println("here 1");
 				User.bookmarked.add(uniArrayCopy.get(currentPage));
 				bookmark.setText("Bookmarked!");
 			} else {
-				System.out.println("here 2");
 				User.bookmarked.remove(uniArrayCopy.get(currentPage));
 				bookmark.setText("Bookmark University");
 			}
 		}
 	}
 
-	// reverses the uniarraycopy
+	// Reverses the sorting on the array
 	public void reverse() {
 		ArrayList<University> temp = new ArrayList<>(14);
 
@@ -415,49 +432,53 @@ public class AllPrograms extends JPanel implements ActionListener {
 		uniArrayCopy = temp;
 	}
 
-	// creates the text info and the pictures of each uni
+	// Creates the text info and the pictures of each uni, and the comparisons
 	public JPanel createUniPanel(University uni) {
 
+		//Setup the main panel
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(400, 500);
+
+		//Setup the labels
 		JLabel nameLabel = new JLabel();
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
 		JLabel logo = new JLabel();
 		JLabel comparison = new JLabel("Comparison");
 		JLabel comparisonStatement = new JLabel();
+		JLabel surveyLabel1 = new JLabel();
+		JLabel surveyLabel2 = new JLabel();
+
 
 		logo.setIcon(new ImageIcon(uni.getImage()));
 		logo.setBounds(0, 70, 300, 200);
+
+		surveyLabel1.setText("Excellent Good Fair Poor");
+
+		surveyLabel2.setText(uni.getExcellent()+" " + uni.getGood() + " " + uni.getFair() + " " + uni.getPoor());
+
 
 		nameLabel.setText(uni.getName());
 		nameLabel.setBounds(0, 0, 400, 80);
 		nameLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 30));
 		nameLabel.setForeground(Colour.strongHighlight);
+
 		nationalRankLabel.setBounds(0, 30, 500, 80);
 		nationalRankLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
 		nationalRankLabel.setForeground(Colour.strongHighlight);
+
 		infoLabel.setBounds(0, 120, 300, 375);
 		infoLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
 
+		//Checks if the uni is in the bookmarked list
 		if (User.bookmarked.contains(uni)) {
 
 			bookmark.setText("Bookmarked!");
-			bookmark.setBounds(0, 380, 170, 50);
-			bookmark.setBackground(Colour.strike);
-			bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
-			bookmark.addActionListener(this);
 		} else {
 			bookmark.setText("Bookmark University");
-			bookmark.setBounds(0, 380, 170, 50);
-			bookmark.setBackground(Colour.strike);
-			bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
-			bookmark.addActionListener(this);
 		}
-
-		uni.setBookmarked(User.bookmarked.contains(uni));
 		bookmark.setBounds(0, 380, 170, 50);
 		bookmark.setBackground(Colour.strike);
 		bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
@@ -513,7 +534,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		panel.add(infoLabel);
 		panel.add(comparison);
 		panel.add(comparisonStatement);
-		picture.setIcon(uniArrayCopy.get(currentPage).getIcon());
+		picture.setIcon(new ImageIcon(uniArrayCopy.get(currentPage).getIconImage()));
 		picture.setVisible(true);
 		panel.setBackground(Colour.bg);
 		panel.repaint();
@@ -521,6 +542,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		return panel;
 	}
 
+	//Used to sort the universities by increasing average
 	public void insertionSort() {
 		// Runs for every index of the array except the first
 		for (int x = 1; x < uniArrayCopy.size(); x++) {
@@ -539,13 +561,14 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 	}
-
+	//Part of insertion sort
 	public void swap(ArrayList<University> universities, int x, int smallest) {
 		University temp = universities.get(x);
 		universities.set(x, universities.get(smallest));
 		universities.set(smallest, temp);
 	}
 
+	//Sorts alphabetically
 	public void alphaSort() {
 		University temp;
 		for (int i = 0; i < uniArrayCopy.size(); i++) {
@@ -559,6 +582,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 	}
 
+	//Gets the "name" of the university ex. university of toronto ---> toronto
 	public String replaceFiller(String text) {
 		text = text.toLowerCase();
 		text = text.replace("university", "");
