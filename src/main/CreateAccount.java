@@ -2,7 +2,7 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import tools.Colour;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -48,14 +48,17 @@ public class CreateAccount extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		frame.getContentPane().add(contentPane);
+		contentPane.setBackground(Colour.bg);
 
-		JLabel createAccount = new JLabel("Create a new Account");
+		JLabel createAccount = new JLabel("Create a New Account");
 		createAccount.setFont(new Font("Tahoma", Font.BOLD, 20));
+		createAccount.setForeground(Colour.strongHighlight);
 		createAccount.setBounds(10, 19, 244, 37);
 		contentPane.add(createAccount);
 
 		JLabel userName = new JLabel("User Name");
-		userName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		userName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		userName.setForeground(Colour.strongHighlight);
 		userName.setBounds(10, 67, 106, 14);
 		contentPane.add(userName);
 
@@ -66,7 +69,8 @@ public class CreateAccount extends JFrame implements ActionListener {
 		userNameField.setColumns(10);
 
 		JLabel passwordLbl = new JLabel("Password");
-		passwordLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		passwordLbl.setFont(new Font("Tahoma", Font.BOLD, 16));
+		passwordLbl.setForeground(Colour.strongHighlight);
 		passwordLbl.setBounds(10, 117, 106, 14);
 		contentPane.add(passwordLbl);
 
@@ -76,8 +80,9 @@ public class CreateAccount extends JFrame implements ActionListener {
 		contentPane.add(passwordField);
 
 		JLabel retypePasswordLbl = new JLabel("Retype Password");
-		retypePasswordLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		retypePasswordLbl.setBounds(10, 173, 130, 20);
+		retypePasswordLbl.setFont(new Font("Tahoma", Font.BOLD, 16));
+		retypePasswordLbl.setForeground(Colour.strongHighlight);
+		retypePasswordLbl.setBounds(10, 173, 150, 20);
 		contentPane.add(retypePasswordLbl);
 
 		confirmPasswordField = new JPasswordField();
@@ -87,11 +92,17 @@ public class CreateAccount extends JFrame implements ActionListener {
 
 		createAccountBtn = new JButton("Create Account");
 		createAccountBtn.setBounds(10, 247, 130, 23);
+		createAccountBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+		createAccountBtn.setForeground(Colour.highlight);
+		createAccountBtn.setBackground(Colour.strike);
 		createAccountBtn.addActionListener(this);
 		contentPane.add(createAccountBtn);
 
 		returnBtn = new JButton("Return");
-		returnBtn.setBounds(156, 333, 75, 23);
+		returnBtn.setBounds(135, 333, 100, 23);
+		returnBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
+		returnBtn.setForeground(Colour.highlight);
+		returnBtn.setBackground(Colour.strike);
 		returnBtn.addActionListener(this);
 		contentPane.add(returnBtn);
 
@@ -101,15 +112,14 @@ public class CreateAccount extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 
 		if (event.getSource() == createAccountBtn) {
-
 			username = userNameField.getText();
 			password = String.valueOf(passwordField.getPassword());
-
-			if (!VerifyLogin.existingUsername(username)) {
+			
+			if (!VerifyLogin.existingUsername(username)) {		// Checks if the username exists in the file
 				JOptionPane.showMessageDialog(contentPane, "Username already exists.");
-			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) {
+			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) {		// Checks if the second password matches the first
 				JOptionPane.showMessageDialog(contentPane, "Passwords do not match!");
-			} else if (VerifyLogin.unwantedCharacter(username, password)) {
+			} else if (VerifyLogin.unwantedCharacter(username, password)) {			// Checks if there is an unwanted character.
 				JOptionPane.showMessageDialog(contentPane, "Commas & Spaces are prohibited!");
 			} else {
 				try {
