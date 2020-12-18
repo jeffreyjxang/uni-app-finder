@@ -1,5 +1,6 @@
 package main;
 
+import guiClasses.Welcome;
 import objects.UniversitiesInformation;
 
 /*
@@ -12,7 +13,7 @@ public class Launcher {
 		// Create and launch first screen
 		Welcome.CreateWelcome();
 		Welcome.GUI.setVisible(true);
-		
+
 		// Setup universities information
 		UniversitiesInformation.setUniversities();
 	}

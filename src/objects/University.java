@@ -161,14 +161,18 @@ public class University {
 	}
 
 	public ImageIcon getLogo() {
-		return  (logo);
+		return (logo);
 	}
 
 	public void setLogo(ImageIcon logo) {
 		this.logo = logo;
 	}
 
-	public String getLink() { return link; }
+	public String getLink() {
+		return link;
+	}
 
-	public void setLink(String link) {this.link = link; }
+	public void setLink(String link) {
+		this.link = link;
+	}
 }

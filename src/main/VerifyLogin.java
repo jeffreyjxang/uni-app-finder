@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 import javax.swing.JTextField;
 
+import guiClasses.CreateAccount;
+
 public class VerifyLogin {
 
 	static Scanner input;

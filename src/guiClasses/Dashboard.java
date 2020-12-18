@@ -1,10 +1,5 @@
-package main;
+package guiClasses;
 
-import guiClasses.AllPrograms;
-import guiClasses.HelpScreen;
-import guiClasses.MapScreen;
-import guiClasses.SurveyResults;
-import guiClasses.SurveyScreen;
 import objects.UniversitiesInformation;
 import tools.Colour;
 

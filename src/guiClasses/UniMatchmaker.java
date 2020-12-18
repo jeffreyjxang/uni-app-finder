@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import guiClasses.MapScreen;
 import objects.UniversitiesInformation;
 import tools.Colour;
 

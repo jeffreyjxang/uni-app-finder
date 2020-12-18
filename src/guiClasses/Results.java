@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import guiClasses.MapScreen;
 import objects.UniversitiesInformation;
 import tools.Colour;
 

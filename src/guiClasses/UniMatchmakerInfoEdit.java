@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,6 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-import guiClasses.MapScreen;
 import tools.Colour;
 
 /*

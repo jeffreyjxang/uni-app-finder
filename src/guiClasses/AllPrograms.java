@@ -1,10 +1,8 @@
 package guiClasses;
 
 import objects.UniversitiesInformation;
-import main.BookmarkedUniversities;
-import main.UniMatchmakerInfoEdit;
-import main.User;
 import objects.University;
+import objects.User;
 import tools.Colour;
 import javax.swing.AbstractButton;
 

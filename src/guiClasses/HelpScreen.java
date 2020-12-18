@@ -8,8 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.Dashboard;
-import main.Welcome;
 import tools.Colour;
 
 /*

@@ -1,8 +1,6 @@
-package main;
+package objects;
 
 import java.util.ArrayList;
-
-import objects.University;
 
 public class User extends Login {
 	public double average;

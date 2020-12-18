@@ -1,5 +1,6 @@
 package main;
 
+import guiClasses.UniMatchmakerInfoEdit;
 import objects.UniversitiesInformation;
 
 /*
@@ -36,7 +37,7 @@ public class MatchmakingAlgorithm {
 		int[] classSize = new int[14];
 
 		personAverage = 0;
-		
+
 		// Gets the user's average
 		for (int counter = 0; counter < 6; counter++)
 			if (UniMatchmakerInfoEdit.gradeTextField[counter].getText().length() <= 3

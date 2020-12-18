@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import guiClasses.HelpScreen;
 import tools.Colour;
 
 public class Welcome {

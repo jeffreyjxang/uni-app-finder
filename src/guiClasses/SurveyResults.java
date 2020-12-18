@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.Dashboard;
 import tools.Colour;
 
 public class SurveyResults extends JPanel {

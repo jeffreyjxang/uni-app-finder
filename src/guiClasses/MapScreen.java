@@ -9,8 +9,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.*;
 
-import main.Results;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +42,7 @@ public class MapScreen implements ActionListener {
 	private int x = -1, y = -1;
 	private boolean reveal = false;
 	public static boolean logic = false;
-	//the color of the uni dots (rainbow-ish)
+	// the color of the uni dots (rainbow-ish)
 	private Color colors[] = { Color.decode("#CC3636"), Color.decode("#CC3366"), Color.decode("#CC33CC"),
 			Color.decode("#8636CC"), Color.decode("#3636CC"), Color.decode("#3688CC"), Color.decode("#36CCBA"),
 			Color.decode("#36CC87"), Color.decode("#36CC40"), Color.decode("#92CC36"), Color.decode("#CCC136"),
@@ -64,11 +62,12 @@ public class MapScreen implements ActionListener {
 	private JButton goToMap = new JButton();
 	private ImageIcon ontarioMap = new ImageIcon(
 			new ImageIcon("./resources/misc/ontario-map.png").getImage().getScaledInstance(875 / 2, 611 / 2, 0));
-	private ImageIcon mapIcon = new ImageIcon(new ImageIcon("./resources/misc/map.png").getImage().getScaledInstance(600, 360, 0));
+	private ImageIcon mapIcon = new ImageIcon(
+			new ImageIcon("./resources/misc/map.png").getImage().getScaledInstance(600, 360, 0));
 	private ImageIcon blackDot = new ImageIcon(new ImageIcon("./resources/misc/black-dot.png").getImage()
 			.getScaledInstance(105 / DOT_SIZE, 105 / DOT_SIZE, 0));
 
-	private SwingWorker worker = null; //allows "multi-threading"
+	private SwingWorker worker = null; // allows "multi-threading"
 
 	private UniversitiesInformation universities;
 	private UniversityDistance distance[] = new UniversityDistance[14];
@@ -81,7 +80,7 @@ public class MapScreen implements ActionListener {
 		setupDistance();
 	}
 
-	//Setting up the misc labels, needs to be placed on labels first
+	// Setting up the misc labels, needs to be placed on labels first
 	private void setupMisc() {
 		try {
 			Scanner in = new Scanner(new File(new File("").getAbsolutePath() + "/resources/misc/location.txt"));
@@ -161,7 +160,8 @@ public class MapScreen implements ActionListener {
 
 		// cursor circle to indicate where the map has been clicked
 		JLabel circle = new JLabel();
-		circle.setIcon(new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
+		circle.setIcon(
+				new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
 		mapPanel.add(circle);
 
 		// screenshot of Google Map
@@ -196,7 +196,8 @@ public class MapScreen implements ActionListener {
 		mapPanel.add(map);
 
 		// loading gif
-		gif.setIcon(new ImageIcon(new ImageIcon("./resources/misc/load.gif").getImage().getScaledInstance(100, 100, 0)));
+		gif.setIcon(
+				new ImageIcon(new ImageIcon("./resources/misc/load.gif").getImage().getScaledInstance(100, 100, 0)));
 		gif.setBounds(750, 225, 100, 100);
 		gif.setVisible(false);
 		mapPanel.add(gif);
@@ -262,8 +263,8 @@ public class MapScreen implements ActionListener {
 		distancePanel.add(all);
 
 		// cursor circle to indicate where the map has been clicked on the mapPreview
-		mapPreviewCircle
-				.setIcon(new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
+		mapPreviewCircle.setIcon(
+				new ImageIcon(new ImageIcon("./resources/misc/circle.png").getImage().getScaledInstance(50, 50, 0)));
 		mapPreviewCircle.setBounds(700 + 25, 20 + 25, 50, 50);
 		mapPreviewCircle.setVisible(false);
 		distancePanel.add(mapPreviewCircle);
@@ -303,13 +304,13 @@ public class MapScreen implements ActionListener {
 		}
 	}
 
-	//swithces the visiblity on the university's dots
+	// swithces the visiblity on the university's dots
 	private void switchVisibility(int i) {
 		distance[i].getDot().setVisible(distance[i].getVisbility());
 		distance[i].setVisibility(!distance[i].getVisbility());
 	}
 
-	//sorts the distance array to match the default from .txt files
+	// sorts the distance array to match the default from .txt files
 	private void resetDistance() {
 		for (int i = 0; i < 14; i++) {
 			for (int j = i + 1; j < 14; j++) {
@@ -342,7 +343,7 @@ public class MapScreen implements ActionListener {
 		}
 		universities.getUniversityDistances().add(copy); // adding the copy, while I still have the sorted array
 		Arrays.sort(distance); // since the UniversityDistance has implements Comparable, this works
-		for (int i = 0; i < 14; i++) { //this places the dots on the map with the right color
+		for (int i = 0; i < 14; i++) { // this places the dots on the map with the right color
 			distance[i].setColor(colors[i]);
 			distance[i].setID(String.format("%02d", i + 1));
 			distance[i].getDot()
@@ -351,7 +352,7 @@ public class MapScreen implements ActionListener {
 			distance[i].getDot().setBounds(distance[i].getX(), distance[i].getY() - 150, 105 / DOT_SIZE,
 					105 / DOT_SIZE);
 		}
-		for (int i = 0; i < 14; i++) { //displays the sorted arrays with their names and the proper buttons
+		for (int i = 0; i < 14; i++) { // displays the sorted arrays with their names and the proper buttons
 			result[i].setText(distance[i].toString());
 			// need to remove all actionListeners or else they'll pile up on each other
 			for (ActionListener al : distance[i].getButton().getActionListeners()) {
@@ -370,7 +371,7 @@ public class MapScreen implements ActionListener {
 		}
 		universities.getUniversityDistances().add(distance);
 
-		if (click) { //if user clicked on the map --> display preview
+		if (click) { // if user clicked on the map --> display preview
 			// you need a bufferedImage to get a snippet of an image
 			BufferedImage mapCopy = new BufferedImage(mapIcon.getIconWidth(), mapIcon.getIconHeight(),
 					BufferedImage.TYPE_INT_RGB);
@@ -393,7 +394,7 @@ public class MapScreen implements ActionListener {
 			mapPreview.setIcon(new ImageIcon(mapDisplay));
 		}
 
-		//if postal code lies within these bounds, place black dot
+		// if postal code lies within these bounds, place black dot
 		double TL = 41.52450;
 		double TR = 46.88475;
 		double BL = -84.88621;
@@ -415,16 +416,16 @@ public class MapScreen implements ActionListener {
 		reveal = !reveal;
 	}
 
-	//warns users if they enter an invalid postal code
+	// warns users if they enter an invalid postal code
 	private boolean valid(String text) {
 		text = text.toUpperCase();
-		for (int i=0;i<6;i++) {
-			if(i%2==0) { //letter
-				if(!('A'<=text.charAt(i) && text.charAt(i)<='Z')) {
+		for (int i = 0; i < 6; i++) {
+			if (i % 2 == 0) { // letter
+				if (!('A' <= text.charAt(i) && text.charAt(i) <= 'Z')) {
 					return false;
 				}
-			} else { //number
-				if(!('0'<=text.charAt(i) && text.charAt(i)<='9')) {
+			} else { // number
+				if (!('0' <= text.charAt(i) && text.charAt(i) <= '9')) {
 					return false;
 				}
 			}
@@ -437,8 +438,8 @@ public class MapScreen implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		// if the button was on the Map JPanel
 		if (event.getSource() == goToDistance) {
-			if((!text.getText().equals("A1B2C3") && text.getText().length() == 6)) {
-				if(valid(text.getText())) {
+			if ((!text.getText().equals("A1B2C3") && text.getText().length() == 6)) {
+				if (valid(text.getText())) {
 					gif.setVisible(true);
 					logic = true;
 					setupWorker();
@@ -446,8 +447,7 @@ public class MapScreen implements ActionListener {
 				} else {
 					JOptionPane.showMessageDialog(mapPanel, "Invalid Postal Code");
 				}
-			}
-			else if ((x != -1 && y != -1)) {
+			} else if ((x != -1 && y != -1)) {
 				gif.setVisible(true);
 				logic = true;
 				setupWorker();
@@ -553,12 +553,12 @@ public class MapScreen implements ActionListener {
 		return Math.pow(Math.sin(val / 2), 2);
 	}
 
-	//returns the mapPanel
+	// returns the mapPanel
 	public JPanel getMapPanel() {
 		return mapPanel;
 	}
 
-	//returns distancePanel
+	// returns distancePanel
 	public JPanel getDistancePanel() {
 		return distancePanel;
 	}
