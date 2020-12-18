@@ -1,10 +1,16 @@
 package guiClasses;
 
 import objects.UniversitiesInformation;
+import main.BookmarkedUniversities;
+import main.UniMatchmakerInfoEdit;
+import main.User;
 import objects.University;
 import tools.Colour;
 
 import javax.swing.*;
+
+import jdk.dynalink.linker.ConversionComparator.Comparison;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,7 +39,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	private JLabel searchLabel = new JLabel("Search");
 	private JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL, 0, 1, 0, 14);
 	private String[] sorting = new String[] { "Alpha: A-Z", "Alpha: Z-A", "Average: Low to High",
-			"Average: High to Low" };
+			"Average: High to Low", "Bookmarked Universities" };
 	private JPanel uniPanel;
 	private ArrayList<University> customList = new ArrayList<>(0);
 	private int maxIndex = 14;
@@ -43,6 +49,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	public static JPanel overallPanel = new JPanel();
 	private JLabel currentLocation = new JLabel();
 	private JButton website = new JButton();
+	private JButton bookmark = new JButton();
 	private int totalMoves = 0;
 
 	// constructor to setup the GUI screen
@@ -54,11 +61,11 @@ public class AllPrograms extends JPanel implements ActionListener {
 		overallPanel.setBackground(Colour.bg);
 		// Setting up the GUI panel
 		UniversitiesInformation.setUniversities();
-		uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
-		setLayout(null);
 
+		setLayout(null);
+		uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 		uniPanel = createUniPanel(uniArrayCopy.get(0));
-		uniPanel.setBounds(590, 0, 400, 500);
+		uniPanel.setBounds(590, 0, 400, 700);
 		uniPanel.setBackground(Colour.bg);
 		overallPanel.add(uniPanel);
 		uniPanel.setVisible(true);
@@ -149,8 +156,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		searchButton.setBackground(Colour.strike);
 		searchButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 
-
-		currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
+		currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 		currentLocation.setBounds(500, 15, 90, 50);
 		currentLocation.setFont(new Font(title.getFont().getName(), Font.PLAIN, 24));
 		currentLocation.setForeground(Colour.strongHighlight);
@@ -175,21 +181,33 @@ public class AllPrograms extends JPanel implements ActionListener {
 		if (event.getSource() == combobox2) {
 
 			if (combobox2.getSelectedIndex() == 0) { // if its A-Z
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				alphaSort();
 				reversed = false;
 			} else if (combobox2.getSelectedIndex() == 1) { // if its Z-A
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				alphaSort();
 				reverse();
 				reversed = true;
 				currentPage = 0;
 			} else if (combobox2.getSelectedIndex() == 2) { // Low to High, Average
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				insertionSort();
-			}
-
-			else if (combobox2.getSelectedIndex() == 3) { // high to low, average
+			} else if (combobox2.getSelectedIndex() == 3) { // high to low, average
+				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 				insertionSort();
 				reverse();
 				reversed = true;
+			} else if (combobox2.getSelectedIndex() == 4) { // bookmarked universities
+				uniArrayCopy.clear();
+				if (User.bookmarked.size() <= 0) {
+					JOptionPane.showMessageDialog(overallPanel, "Bookmark some universities first!");
+				} else {
+					for (int x = 0; x < User.bookmarked.size(); x++) {
+						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
+																		// the uniArrayCopy
+					}
+				}
 			}
 			currentPage = 0;
 			overallPanel.remove(uniPanel);
@@ -197,9 +215,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 			// creates a new unipanel(top right corner), and changes the picture
 			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 
-			uniPanel.setBounds(590, 0, 400, 500);
+			uniPanel.setBounds(590, 0, 400, 700);
 			overallPanel.add(uniPanel);
-			currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
+			currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 
 			overallPanel.repaint();
 		}
@@ -214,14 +232,13 @@ public class AllPrograms extends JPanel implements ActionListener {
 				alphaSort();
 				int comboboxIndex = combobox1.getSelectedIndex();
 				overallPanel.remove(uniPanel);
-				currentPage = comboboxIndex-1;
-				uniPanel = createUniPanel(uniArrayCopy.get(comboboxIndex-1));
-				uniPanel.setBounds(590, 0, 400, 500);
+				currentPage = comboboxIndex - 1;
+				uniPanel = createUniPanel(uniArrayCopy.get(comboboxIndex - 1));
+				uniPanel.setBounds(590, 0, 400, 700);
 				scrollBar.setValue(comboboxIndex);
 
-				currentLocation.setText(currentPage + 1 + "/"+ uniArrayCopy.size());
+				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 				overallPanel.add(uniPanel);
-
 
 				overallPanel.repaint();
 			}
@@ -229,6 +246,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		// "next" button
 		if (event.getSource() == nextBtn) {
+			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
 				totalMoves += 1;
 				currentPage += 1;
@@ -241,9 +259,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 				overallPanel.remove(uniPanel);
 
-
 				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
-				uniPanel.setBounds(590, 0, 400, 500);
+				uniPanel.setBounds(590, 0, 400, 700);
 				combobox1.setSelectedIndex(0);
 				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 
@@ -256,6 +273,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 		// "back" button
 		if (event.getSource() == backBtn) {
+			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
 				currentPage -= 1;
 				if (currentPage == -1) {
@@ -268,7 +286,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 
-				uniPanel.setBounds(590, 0, 400, 500);
+				uniPanel.setBounds(590, 0, 400, 700);
 
 				overallPanel.add(uniPanel);
 				combobox1.repaint();
@@ -278,23 +296,23 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 		if (event.getSource() == resetButton) {
-				maxIndex = 14;
-				uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
-				keyword.setText("");
-				currentPage = 0;
-				overallPanel.remove(uniPanel);
+			maxIndex = uniArrayCopy.size();
+			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
+			keyword.setText("");
+			currentPage = 0;
+			overallPanel.remove(uniPanel);
 
-				// creates a new unipanel(top right corner), and changes the picture
-				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
+			// creates a new unipanel(top right corner), and changes the picture
+			uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
 
-				uniPanel.setBounds(590, 0, 400, 500);
-				overallPanel.add(uniPanel);
+			uniPanel.setBounds(590, 0, 400, 700);
+			overallPanel.add(uniPanel);
 
-				combobox2.setSelectedIndex(0);
-				currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
+			combobox2.setSelectedIndex(0);
+			currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 
-				currentLocation.repaint();
-				overallPanel.repaint();
+			currentLocation.repaint();
+			overallPanel.repaint();
 
 			nextBtn.setBackground(Colour.strike);
 			backBtn.setBackground(Colour.strike);
@@ -365,7 +383,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 				maxIndex = customList.size();
 				overallPanel.remove(uniPanel);
 				uniPanel = createUniPanel(uniArrayCopy.get(currentPage));
-				uniPanel.setBounds(590, 0, 400, 500);
+				uniPanel.setBounds(590, 0, 400, 700);
 				combobox2.setSelectedIndex(0);
 				combobox2.repaint();
 				nextBtn.setBackground(gray);
@@ -377,6 +395,25 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 			}
 			overallPanel.repaint();
+
+		}
+		if (event.getSource() == bookmark) {
+			if (bookmark.getText() == "Bookmark University") {
+				User.bookmarked.add(uniArrayCopy.get(currentPage));
+				bookmark.setText("Bookmarked!");
+			} else {
+				User.bookmarked.remove(uniArrayCopy.get(currentPage));
+				bookmark.setText("Bookmark University");
+			}
+			if (currentPage % 2 == 1) {
+				if (bookmark.getText() == "Bookmark University") {
+					User.bookmarked.add(uniArrayCopy.get(currentPage));
+					bookmark.setText("Bookmarked!");
+				} else {
+					User.bookmarked.remove(uniArrayCopy.get(currentPage));
+					bookmark.setText("Bookmark University");
+				}
+			}
 
 		}
 	}
@@ -396,11 +433,13 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setSize(400, 500);
+		panel.setSize(400, 700);
 		JLabel nameLabel = new JLabel();
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
 		JLabel logo = new JLabel();
+		JLabel comparison = new JLabel("Comparison");
+		JLabel comparisonStatement = new JLabel();
 
 		logo.setIcon(new ImageIcon(uni.getImage()));
 		logo.setBounds(0, 70, 300, 200);
@@ -412,13 +451,72 @@ public class AllPrograms extends JPanel implements ActionListener {
 		nationalRankLabel.setBounds(0, 30, 500, 80);
 		nationalRankLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
 		nationalRankLabel.setForeground(Colour.strongHighlight);
-		infoLabel.setBounds(0, 120, 300, 500);
+		infoLabel.setBounds(0, 120, 300, 375);
 		infoLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
+
+		if (User.bookmarked.contains(uni)) {
+			bookmark.setText("Bookmarked!");
+			bookmark.setBounds(0, 380, 170, 50);
+			bookmark.setBackground(Colour.strike);
+			bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
+			bookmark.addActionListener(this);
+		} else {
+			bookmark.setText("Bookmark University");
+			bookmark.setBounds(0, 380, 170, 50);
+			bookmark.setBackground(Colour.strike);
+			bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
+			bookmark.addActionListener(this);
+		}
+
+		comparison.setBounds(0, 450, 150, 30);
+		comparison.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
+		comparison.setForeground(Colour.strongHighlight);
+
+		if (!(UniMatchmakerInfoEdit.save)) {
+			comparisonStatement
+					.setText("<html>Go to preferences tab to see how your averages compare to the universities.<html>");
+			comparisonStatement.setBounds(0, 500, 300, 100);
+			comparisonStatement.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
+			comparisonStatement.setForeground(Colour.strongHighlight);
+
+		} else if (UniMatchmakerInfoEdit.save) {
+			double average = 0;
+			for (int x = 0; x < 6; x++) {
+				average += Integer.parseInt(UniMatchmakerInfoEdit.gradeTextField[x].getText());
+			}
+			average = average / 6;
+			if (uni.getCutoff() > average) {
+				comparisonStatement.setText("<html>As of now, you do not meet the cutoff for this university.<html>");
+				comparisonStatement.setBounds(0, 470, 300, 125);
+				comparisonStatement.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
+				comparisonStatement.setForeground(Colour.strongHighlight);
+
+			} else if (uni.getCutoff() < average && average < uni.getAverage()) {
+				comparisonStatement.setText(
+						"<html>You meet the cutoff requirement, however, you do not meet the admission average (2016).<html>");
+				comparisonStatement.setBounds(0, 470, 300, 125);
+				comparisonStatement.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
+				comparisonStatement.setForeground(Colour.strongHighlight);
+
+			} else {
+				comparisonStatement.setText(
+						"<html>Your current average surpasses the cutoff requirement and the admission average (2016).<html>");
+				comparisonStatement.setBounds(0, 470, 300, 125);
+				comparisonStatement.setFont(new Font(title.getFont().getName(), Font.PLAIN, 14));
+				comparisonStatement.setForeground(Colour.strongHighlight);
+
+			}
+
+		}
+
+		panel.add(comparisonStatement);
 		panel.add(nameLabel);
 		panel.add(logo);
 		panel.add(nationalRankLabel);
 		panel.add(infoLabel);
+		panel.add(bookmark);
+		panel.add(comparison);
 		picture.setIcon(uniArrayCopy.get(currentPage).getIcon());
 		picture.setVisible(true);
 		panel.setBackground(Colour.bg);
