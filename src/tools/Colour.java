@@ -2,6 +2,10 @@ package tools;
 
 import java.awt.*;
 
+/**
+ * Color scheme of the project. All the fields are static so that
+ * if functions similarly to how the Color class works.
+ */
 public class Colour {
     public static Color bg = Color.decode("#072540"); //dark blue
     public static Color lightBg = Color.decode("#183D5D"); //medium blue
