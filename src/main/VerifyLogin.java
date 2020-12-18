@@ -37,7 +37,7 @@ public class VerifyLogin {
 
 		try {
 			input = new Scanner(new File(path + "/resources/membersFiles/members.txt"));
-			input.useDelimiter(",|\\n");
+			input.useDelimiter(",");
 
 			while (input.hasNext() && !found) {
 				tempUsername = input.next();
@@ -135,7 +135,8 @@ public class VerifyLogin {
 	 */
 	public static void saveInformation(String username, String password, JTextField[] gradeTxtField,
 			JTextField[] coursestxtField, int ranking, int tuition, int uniSize, int distance, int residence,
-			int classSize, int slider, int slider1, int slider2, int slider3, int slider4, int slider5) throws Exception {
+			int classSize, int slider, int slider1, int slider2, int slider3, int slider4, int slider5)
+			throws Exception {
 		FileWriter fw = new FileWriter(membersInfo, true);
 		PrintWriter pw = new PrintWriter(fw);
 
