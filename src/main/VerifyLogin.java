@@ -49,7 +49,7 @@ public class VerifyLogin {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Cannot locate members.txt file");
+
 		}
 		return found;
 	}
