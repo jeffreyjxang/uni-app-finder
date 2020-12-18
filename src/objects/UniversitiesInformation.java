@@ -50,9 +50,11 @@ public class UniversitiesInformation {
 			index = 0;
 
 			while (input.hasNext()) {
-				universities.add(index, new University(input.next().replaceAll("\n", "").replaceAll("\r", ""),
-						input.nextDouble(), input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
-						input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(), input.nextInt(), input.next()));
+				universities.add(index,
+						new University(input.next().replaceAll("\n", "").replaceAll("\r", ""), input.nextDouble(),
+								input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
+								input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
+								input.nextInt(), input.next()));
 				index++;
 
 			}
@@ -99,15 +101,14 @@ public class UniversitiesInformation {
 				uni.setIcon(new ImageIcon(path + "/resources/uniPictures/" + uni.getName() + ".jpg"));
 				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png"));
 
-				uni.setImage(uni.getLogo().getImage().getScaledInstance(uni.getLogo().getIconWidth()/3,uni.getLogo().getIconHeight()/3,0));
-
+				uni.setImage(uni.getLogo().getImage().getScaledInstance(uni.getLogo().getIconWidth() / 3,
+						uni.getLogo().getIconHeight() / 3, 0));
 
 			}
 
 			for (University university : universities) {
 				try {
 					input = new Scanner(new File(path + "/resources/keyWords/" + university.getName() + ".txt"));
-
 
 					String keyWords = "";
 

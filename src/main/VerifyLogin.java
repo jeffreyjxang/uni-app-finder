@@ -216,6 +216,8 @@ public class VerifyLogin {
 						Information.add(input1.next());
 					}
 					found = true;
+				} else {
+					found = false;
 				}
 			}
 			input1.close();

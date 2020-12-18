@@ -26,7 +26,10 @@ import tools.Colour;
 
 public class Results extends JPanel {
 
+	// GUI
 	public static JPanel resultsPanel;
+
+	// Private variables
 	private static JLabel[] nameLabel = new JLabel[2];
 	private static JLabel[] admissionLabel = new JLabel[2];
 	private static JLabel[] tuitionLabel = new JLabel[2];
@@ -37,12 +40,16 @@ public class Results extends JPanel {
 	private static JLabel[] pictureLabel = new JLabel[2];
 	private static JPanel[] uniPanel = new JPanel[2];
 	private static JLabel[] clickHere = new JLabel[2];
+
+	// Public variable
 	public static int y = 0;
 
 	public static void CreateResults() {
 
+		// Results screen has been created
 		Dashboard.results = true;
 
+		// Create boarder
 		Border border = BorderFactory.createLineBorder(Colour.strongHighlight, 3);
 
 		// Create results panel
@@ -89,10 +96,10 @@ public class Results extends JPanel {
 		});
 		resultsPanel.add(backButton);
 
+		// Variables
 		int[] num = new int[2];
 		num[0] = MatchmakingAlgorithm.greatestIndex;
 		num[1] = MatchmakingAlgorithm.secondGreatestIndex;
-
 		String[] uni = new String[2];
 		double[] cutoff = new double[2];
 		double[] distance = new double[2];
@@ -105,6 +112,7 @@ public class Results extends JPanel {
 		// Add university info label
 		for (int x = 0; x < nameLabel.length; x++) {
 
+			// Store the top 2 universities' information
 			uni[x] = UniversitiesInformation.universities.get(num[x]).getName();
 			cutoff[x] = UniversitiesInformation.universities.get(num[x]).getCutoff();
 			distance[x] = UniversitiesInformation.distances.get(0)[num[x]].getDistance();
@@ -114,12 +122,14 @@ public class Results extends JPanel {
 			classSize[x] = UniversitiesInformation.universities.get(num[x]).getClassSize();
 			link[x] = UniversitiesInformation.universities.get(num[x]).getLink();
 
+			// Create 2 panels, one for each university
 			uniPanel[x] = new JPanel();
 			uniPanel[x].setBounds(50 + 455 * x, 140, 385, 450);
 			uniPanel[x].setBackground(Colour.bg);
 			uniPanel[x].setLayout(null);
 			uniPanel[x].setBorder(border);
 
+			// Create information labels for universities
 			nameLabel[x] = new JLabel("Institution #" + (x + 1) + " Name: " + uni[x]);
 			nameLabel[x].setFont(new Font("Tahoma", Font.PLAIN, 14));
 			nameLabel[x].setForeground(Colour.strongHighlight);
@@ -168,6 +178,9 @@ public class Results extends JPanel {
 			clickHere[x].setBounds(43, 220, 200, 25);
 			uniPanel[x].add(clickHere[x]);
 
+			// Make picture labels pressable
+			// Code used from
+			// https://www.codejava.net/java-se/swing/how-to-create-hyperlink-with-jlabel-in-java-swing
 			pictureLabel[x] = new JLabel(new ImageIcon("resources/uniPictures2/" + uni[x] + ".jpg"));
 			pictureLabel[x].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			pictureLabel[x].setBounds(35, 240, 300, 200);

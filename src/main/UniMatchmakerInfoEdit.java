@@ -23,6 +23,11 @@ import javax.swing.border.Border;
 import guiClasses.MapScreen;
 import tools.Colour;
 
+/*
+ * The UniMatchmakerInfoEdit class allows the user to edit all of their
+ * information such as their courses, grades and external university
+ * desicion factors.
+ */
 public class UniMatchmakerInfoEdit extends JPanel {
 
 	public static JPanel accountEditPanel;
@@ -44,6 +49,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		Dashboard.displayPanel.add(accountEditPanel);
 		accountEditPanel.setLayout(null);
 
+		// Create panel for courses
 		JPanel coursesPanel = new JPanel();
 		coursesPanel.setBounds(10, 90, 300, 510);
 		coursesPanel.setBackground(Colour.bg);
@@ -51,6 +57,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		coursesPanel.setBorder(border);
 		accountEditPanel.add(coursesPanel);
 
+		// Create panel for external factors
 		JPanel externalPanel = new JPanel();
 		externalPanel.setBounds(325, 90, 590, 510);
 		externalPanel.setBackground(Colour.bg);
@@ -79,12 +86,14 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		courseGradeLabel.setBounds(40, 15, 280, 40);
 		coursesPanel.add(courseGradeLabel);
 
-		// Create edit buttons
+		// Create save buttons
 		JButton saveButton = new JButton("Save");
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		saveButton.setBackground(Colour.strike);
 		saveButton.setBounds(800, 30, 75, 30);
 		saveButton.addActionListener(new ActionListener() {
+
+			// Save person's data and goes to results screen
 			public void actionPerformed(ActionEvent e) {
 				try {
 					VerifyLogin.saveInformation(CreateAccount.username, CreateAccount.password, gradeTextField,
@@ -108,10 +117,10 @@ public class UniMatchmakerInfoEdit extends JPanel {
 
 		// Create instructions label
 		JLabel instructions = new JLabel(
-				"*Use the sliders to indicate the level of importance for each external factor*");
+				"<html>*Remember to use the sliders to indicate the level of weight of each external factor as it will have an impact on which universities you may get!*<html>");
 		instructions.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		instructions.setForeground(Colour.strongHighlight);
-		instructions.setBounds(25, 50, 500, 30);
+		instructions.setBounds(25, 50, 500, 35);
 		externalPanel.add(instructions);
 
 		// Create external factors headings
@@ -195,6 +204,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		dropDownLists[5].addItem(">300");
 		dropDownLists[5].addItem("Does not matter");
 
+		// Load if user's information exists
 		if (VerifyLogin.verifyInformation()) {
 			int index = 0;
 			ArrayList<String> Information = VerifyLogin.loadInformation();
