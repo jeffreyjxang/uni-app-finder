@@ -37,7 +37,7 @@ public class VerifyLogin {
 
 		try {
 			input = new Scanner(new File(path + "/resources/membersFiles/members.txt"));
-			input.useDelimiter(",");
+			input.useDelimiter(",|\\n");
 
 			while (input.hasNext() && !found) {
 				tempUsername = input.next();

@@ -117,10 +117,10 @@ public class UniMatchmakerInfoEdit extends JPanel {
 
 		// Create instructions label
 		JLabel instructions = new JLabel(
-				"<html>*Remember to use the sliders to indicate the level of weight of each external factor as it will have an impact on which universities you may get!*<html>");
+				"<html>Remember to use the sliders to indicate the level of weight of each external factor as it will have an impact on which universities you may get!<br>*Note: weight 0 and option \"Does not matter\" will remove the factor from you result*<html>");
 		instructions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		instructions.setForeground(Colour.strongHighlight);
-		instructions.setBounds(25, 50, 500, 35);
+		instructions.setForeground(Colour.strike);
+		instructions.setBounds(25, 55, 550, 60);
 		externalPanel.add(instructions);
 
 		// Create external factors headings
@@ -151,20 +151,20 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			sliders[counter].setBackground(Colour.bg);
 			sliders[counter].setForeground(Colour.strongHighlight);
 			sliders[counter].setMajorTickSpacing(1);
-			sliders[counter].setMinimum(1);
-			sliders[counter].setMaximum(5);
+			sliders[counter].setMinimum(0);
+			sliders[counter].setMaximum(10);
 			sliders[counter].setPaintTicks(true);
 			sliders[counter].setPaintLabels(true);
 			sliders[counter].setSnapToTicks(true);
 
 			if (counter <= 2) {
-				headings[counter].setBounds(25, 90 + 140 * counter, 200, 25);
-				dropDownLists[counter].setBounds(25, 120 + 140 * counter, 200, 30);
-				sliders[counter].setBounds(25, 160 + 140 * counter, 200, 50);
+				headings[counter].setBounds(25, 130 + 120 * counter, 200, 25);
+				dropDownLists[counter].setBounds(25, 160 + 120 * counter, 200, 25);
+				sliders[counter].setBounds(25, 200 + 120 * counter, 200, 40);
 			} else {
-				headings[counter].setBounds(300, 90 + 140 * (counter - 3), 200, 25);
-				dropDownLists[counter].setBounds(300, 120 + 140 * (counter - 3), 200, 30);
-				sliders[counter].setBounds(300, 160 + 140 * (counter - 3), 200, 50);
+				headings[counter].setBounds(300, 130 + 120 * (counter - 3), 200, 25);
+				dropDownLists[counter].setBounds(300, 160 + 120 * (counter - 3), 200, 25);
+				sliders[counter].setBounds(300, 200 + 120 * (counter - 3), 200, 40);
 			}
 
 			externalPanel.add(headings[counter]);
@@ -208,10 +208,11 @@ public class UniMatchmakerInfoEdit extends JPanel {
 		if (VerifyLogin.verifyInformation()) {
 			int index = 0;
 			ArrayList<String> Information = VerifyLogin.loadInformation();
-			
+
 			for (int x = 0; x < 6; x++) {
 				gradeTextField[x].setText(Information.get(index));
-				++index;;
+				++index;
+				;
 			}
 			for (int x = 0; x < 6; x++) {
 				courseTextField[x].setText(Information.get(index));
@@ -225,7 +226,7 @@ public class UniMatchmakerInfoEdit extends JPanel {
 				sliders[x].setValue(Integer.parseInt(Information.get(index)));
 				++index;
 			}
-		} 
+		}
 	}
 
 }
