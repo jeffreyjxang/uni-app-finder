@@ -44,8 +44,6 @@ public class VerifyLogin {
 			while (input.hasNext() && !found) {
 				tempUsername = input.next();
 				tempPassword = input.next();
-				System.out.println(tempUsername);
-				System.out.println(tempPassword);
 
 				if (tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim())) {
 					found = true;

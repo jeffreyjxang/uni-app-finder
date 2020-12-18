@@ -158,13 +158,13 @@ public class UniMatchmakerInfoEdit extends JPanel {
 			sliders[counter].setSnapToTicks(true);
 
 			if (counter <= 2) {
-				headings[counter].setBounds(25, 130 + 120 * counter, 200, 25);
-				dropDownLists[counter].setBounds(25, 160 + 120 * counter, 200, 25);
-				sliders[counter].setBounds(25, 200 + 120 * counter, 200, 40);
+				headings[counter].setBounds(25, 120 + 130 * counter, 200, 30);
+				dropDownLists[counter].setBounds(25, 155 + 130 * counter, 200, 30);
+				sliders[counter].setBounds(20, 195 + 130 * counter, 210, 40);
 			} else {
-				headings[counter].setBounds(300, 130 + 120 * (counter - 3), 200, 25);
-				dropDownLists[counter].setBounds(300, 160 + 120 * (counter - 3), 200, 25);
-				sliders[counter].setBounds(300, 200 + 120 * (counter - 3), 200, 40);
+				headings[counter].setBounds(300, 120 + 130 * (counter - 3), 200, 30);
+				dropDownLists[counter].setBounds(300, 155 + 130 * (counter - 3), 200, 30);
+				sliders[counter].setBounds(295, 195 + 130 * (counter - 3), 210, 40);
 			}
 
 			externalPanel.add(headings[counter]);

@@ -100,7 +100,7 @@ public class UniMatchmaker extends JPanel {
 		JButton resultsButton = new JButton("Results");
 		resultsButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resultsButton.setBackground(Colour.strike);
-		resultsButton.setBounds(450, 450, 100, 30);
+		resultsButton.setBounds(450, 450, 100, 40);
 		resultsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MapScreen.logic) {
@@ -146,13 +146,13 @@ public class UniMatchmaker extends JPanel {
 			importance[counter].setForeground(Colour.strike);
 
 			if (counter <= 2) {
-				headings[counter].setBounds(25, 80 + 150 * counter, 200, 25);
-				factorValue[counter].setBounds(25, 110 + 150 * counter, 275, 25);
-				importance[counter].setBounds(25, 140 + 150 * counter, 200, 25);
+				headings[counter].setBounds(25, 80 + 135 * counter, 200, 25);
+				factorValue[counter].setBounds(25, 110 + 135 * counter, 275, 25);
+				importance[counter].setBounds(25, 140 + 135 * counter, 200, 25);
 			} else {
-				headings[counter].setBounds(275, 80 + 150 * (counter - 3), 200, 25);
-				factorValue[counter].setBounds(275, 110 + 150 * (counter - 3), 275, 25);
-				importance[counter].setBounds(275, 140 + 150 * (counter - 3), 200, 25);
+				headings[counter].setBounds(275, 80 + 135 * (counter - 3), 200, 25);
+				factorValue[counter].setBounds(275, 110 + 135 * (counter - 3), 275, 25);
+				importance[counter].setBounds(275, 140 + 135 * (counter - 3), 200, 25);
 			}
 
 			externalPanel.add(headings[counter]);
