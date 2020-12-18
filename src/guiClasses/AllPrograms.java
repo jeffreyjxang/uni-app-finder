@@ -6,6 +6,7 @@ import main.UniMatchmakerInfoEdit;
 import main.User;
 import objects.University;
 import tools.Colour;
+import javax.swing.AbstractButton;
 
 import javax.swing.*;
 
@@ -50,7 +51,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 	private JLabel currentLocation = new JLabel();
 	private JButton website = new JButton();
 	private JButton bookmark = new JButton();
-	private int totalMoves = 0;
+	private boolean doCheck = true;
 
 	// constructor to setup the GUI screen
 	public AllPrograms() {
@@ -204,8 +205,10 @@ public class AllPrograms extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(overallPanel, "Bookmark some universities first!");
 				} else {
 					for (int x = 0; x < User.bookmarked.size(); x++) {
+						doCheck = false;
 						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
-																		// the uniArrayCopy
+						// the uniArrayCopy
+						doCheck = true;
 
 					}
 				}
@@ -249,7 +252,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		if (event.getSource() == nextBtn) {
 			maxIndex = uniArrayCopy.size();
 			if (uniArrayCopy.size() != 1) {
-				totalMoves += 1;
 				currentPage += 1;
 				if (currentPage == maxIndex) {
 					currentPage = 0;
@@ -399,18 +401,22 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 		if (event.getSource() == bookmark) {
-			if (bookmark.getText() == "Bookmark University") {
-				User.bookmarked.add(uniArrayCopy.get(currentPage));
-				bookmark.setText("Bookmarked!");
+			System.out.println("here");
+			if (doCheck) {
+				if (bookmark.getText().equals("Bookmark University")) {
+					System.out.println("here1");
+					User.bookmarked.add(uniArrayCopy.get(currentPage));
+					bookmark.setText("Bookmarked!");
+				} else {
+					System.out.println("here2");
+					User.bookmarked.remove(uniArrayCopy.get(currentPage));
+					bookmark.setText("Bookmark University");
 				}
 				repaint();
-			} else {
-				User.bookmarked.remove(uniArrayCopy.get(currentPage));
-				bookmark.setText("Bookmark University");
 			}
 
 		}
-
+	}
 	// reverses the uniarraycopy
 	public void reverse() {
 		ArrayList<University> temp = new ArrayList<>(14);
@@ -448,7 +454,9 @@ public class AllPrograms extends JPanel implements ActionListener {
 		infoLabel.setFont(new Font(title.getFont().getName(), Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
 
+
 		if (User.bookmarked.contains(uni)) {
+
 			bookmark.setText("Bookmarked!");
 			bookmark.setBounds(0, 380, 170, 50);
 			bookmark.setBackground(Colour.strike);
@@ -462,6 +470,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			bookmark.addActionListener(this);
 		}
 
+		repaint();
 		comparison.setBounds(0, 450, 150, 30);
 		comparison.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
 		comparison.setForeground(Colour.strongHighlight);
@@ -565,5 +574,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 		return text;
 	}
+
 
 }
