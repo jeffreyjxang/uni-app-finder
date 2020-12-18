@@ -93,7 +93,6 @@ public class CreateAccount extends JFrame implements ActionListener {
 		createAccountBtn = new JButton("Create Account");
 		createAccountBtn.setBounds(10, 247, 130, 23);
 		createAccountBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		createAccountBtn.setForeground(Colour.highlight);
 		createAccountBtn.setBackground(Colour.strike);
 		createAccountBtn.addActionListener(this);
 		contentPane.add(createAccountBtn);
@@ -101,7 +100,6 @@ public class CreateAccount extends JFrame implements ActionListener {
 		returnBtn = new JButton("Return");
 		returnBtn.setBounds(135, 333, 100, 23);
 		returnBtn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		returnBtn.setForeground(Colour.highlight);
 		returnBtn.setBackground(Colour.strike);
 		returnBtn.addActionListener(this);
 		contentPane.add(returnBtn);
@@ -114,18 +112,25 @@ public class CreateAccount extends JFrame implements ActionListener {
 		if (event.getSource() == createAccountBtn) {
 			username = userNameField.getText();
 			password = String.valueOf(passwordField.getPassword());
-			
-			if (!VerifyLogin.existingUsername(username)) {		// Checks if the username exists in the file
+
+			if (!VerifyLogin.existingUsername(username)) { // Checks if the username exists in the file
 				JOptionPane.showMessageDialog(contentPane, "Username already exists.");
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
-			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) {		// Checks if the second password matches the first
+			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) { // Checks
+																													// if
+																													// the
+																													// second
+																													// password
+																													// matches
+																													// the
+																													// first
 				JOptionPane.showMessageDialog(contentPane, "Passwords do not match!");
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
-			} else if (VerifyLogin.unwantedCharacter(username, password)) {			// Checks if there is an unwanted character.
+			} else if (VerifyLogin.unwantedCharacter(username, password)) { // Checks if there is an unwanted character.
 				JOptionPane.showMessageDialog(contentPane, "Commas & Spaces are prohibited!");
 				userNameField.setText("");
 				passwordField.setText("");
@@ -152,6 +157,7 @@ public class CreateAccount extends JFrame implements ActionListener {
 		if (event.getSource() == returnBtn) {
 			frame.dispose();
 			Welcome.CreateWelcome();
+			Welcome.GUI.setVisible(true);
 		}
 
 	}

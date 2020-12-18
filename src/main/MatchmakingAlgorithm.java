@@ -12,7 +12,7 @@ public class MatchmakingAlgorithm {
 	public static double[] score = new double[14];
 	public static int greatestIndex = 0;
 	public static int secondGreatestIndex = 1;
-	public static double personAverage = 0;
+	public static double personAverage;
 
 	public static void Matchmaker() {
 
@@ -35,6 +35,8 @@ public class MatchmakingAlgorithm {
 		double[] residence = new double[14];
 		int[] classSize = new int[14];
 
+		personAverage = 0;
+		
 		// Gets the user's average
 		for (int counter = 0; counter < 6; counter++)
 			if (UniMatchmakerInfoEdit.gradeTextField[counter].getText().length() <= 3
