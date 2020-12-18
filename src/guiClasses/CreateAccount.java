@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,9 @@ import tools.Colour;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import main.VerifyLogin;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -112,19 +115,31 @@ public class CreateAccount extends JFrame implements ActionListener {
 		if (event.getSource() == createAccountBtn) {
 			username = userNameField.getText();
 			password = String.valueOf(passwordField.getPassword());
-			
-			if (!VerifyLogin.existingUsername(username)) {		// Checks if the username exists in the file
+
+			if (!VerifyLogin.existingUsername(username)) { // Checks if the username exists in the file
 				JOptionPane.showMessageDialog(contentPane, "Username already exists.");
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
-			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) {		// Checks if the second password matches the first
+			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) { // Checks
+																													// if
+																													// the
+																													// second
+																													// password
+																													// matches
+																													// the
+																													// first
 				JOptionPane.showMessageDialog(contentPane, "Passwords do not match!");
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
-			} else if (VerifyLogin.unwantedCharacter(username, password)) {			// Checks if there is an unwanted character.
+			} else if (VerifyLogin.unwantedCharacter(username, password)) { // Checks if there is an unwanted character.
 				JOptionPane.showMessageDialog(contentPane, "Commas & Spaces are prohibited!");
+				userNameField.setText("");
+				passwordField.setText("");
+				confirmPasswordField.setText("");
+			} else if (userNameField.getText().equals("") || password.equals("")) {
+				JOptionPane.showMessageDialog(contentPane, "Everything must be filled in!");
 				userNameField.setText("");
 				passwordField.setText("");
 				confirmPasswordField.setText("");
@@ -145,6 +160,7 @@ public class CreateAccount extends JFrame implements ActionListener {
 		if (event.getSource() == returnBtn) {
 			frame.dispose();
 			Welcome.CreateWelcome();
+			Welcome.GUI.setVisible(true);
 		}
 
 	}

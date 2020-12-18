@@ -37,7 +37,7 @@ public class UniversityDistance implements Comparable<UniversityDistance> {
 		return name + " | " + distance + "km";
 	}
 
-	//getter setter methods
+	// getter setter methods
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}

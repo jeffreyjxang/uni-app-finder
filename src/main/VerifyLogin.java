@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 import javax.swing.JTextField;
 
+import guiClasses.CreateAccount;
+
 public class VerifyLogin {
 
 	static Scanner input;
@@ -49,7 +51,7 @@ public class VerifyLogin {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Cannot locate members.txt file");
+
 		}
 		return found;
 	}
@@ -135,7 +137,8 @@ public class VerifyLogin {
 	 */
 	public static void saveInformation(String username, String password, JTextField[] gradeTxtField,
 			JTextField[] coursestxtField, int ranking, int tuition, int uniSize, int distance, int residence,
-			int classSize, int slider, int slider1, int slider2, int slider3, int slider4, int slider5) throws Exception {
+			int classSize, int slider, int slider1, int slider2, int slider3, int slider4, int slider5)
+			throws Exception {
 		FileWriter fw = new FileWriter(membersInfo, true);
 		PrintWriter pw = new PrintWriter(fw);
 

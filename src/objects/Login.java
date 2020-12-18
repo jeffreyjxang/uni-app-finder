@@ -1,4 +1,4 @@
-package main;
+package objects;
 
 public class Login {
 	public String name;
@@ -10,7 +10,7 @@ public class Login {
 		this.password = password;
 	}
 
-	//getters and setters
+	// getters and setters
 	public String getName() {
 		return name;
 	}

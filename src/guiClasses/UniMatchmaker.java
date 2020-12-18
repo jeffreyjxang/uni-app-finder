@@ -1,4 +1,4 @@
-package main;
+package guiClasses;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-import guiClasses.MapScreen;
+import main.MatchmakingAlgorithm;
 import objects.UniversitiesInformation;
 import tools.Colour;
 
@@ -64,21 +64,21 @@ public class UniMatchmaker extends JPanel {
 
 		// Create title
 		JLabel titleLabel = new JLabel("University Matchmaker");
-		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		titleLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
 		titleLabel.setForeground(Colour.strongHighlight);
 		titleLabel.setBounds(300, 10, 400, 65);
 		accountPanel.add(titleLabel);
 
 		// Create description
 		JLabel descriptionLabel = new JLabel("External Factors:");
-		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		descriptionLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		descriptionLabel.setForeground(Colour.strongHighlight);
 		descriptionLabel.setBounds(25, 15, 280, 40);
 		externalPanel.add(descriptionLabel);
 
 		// Create courses and grades heading
 		JLabel courseGradeLabel = new JLabel("Courses and Grades");
-		courseGradeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		courseGradeLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		courseGradeLabel.setForeground(Colour.strongHighlight);
 		courseGradeLabel.setBounds(25, 15, 280, 40);
 		coursesPanel.add(courseGradeLabel);
@@ -100,7 +100,7 @@ public class UniMatchmaker extends JPanel {
 		JButton resultsButton = new JButton("Results");
 		resultsButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		resultsButton.setBackground(Colour.strike);
-		resultsButton.setBounds(450, 450, 100, 30);
+		resultsButton.setBounds(450, 450, 100, 40);
 		resultsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (MapScreen.logic) {
@@ -129,7 +129,7 @@ public class UniMatchmaker extends JPanel {
 					(counter + 1) + ". " + UniMatchmakerInfoEdit.courseTextField[counter].getText() + " - "
 							+ UniMatchmakerInfoEdit.gradeTextField[counter].getText() + "%");
 			courseLabel[counter].setFont(new Font("Tahoma", Font.PLAIN, 16));
-			courseLabel[counter].setForeground(Colour.strongHighlight);
+			courseLabel[counter].setForeground(Colour.strike);
 			courseLabel[counter].setBounds(20, 75 + 75 * counter, 250, 40);
 			coursesPanel.add(courseLabel[counter]);
 
@@ -139,20 +139,20 @@ public class UniMatchmaker extends JPanel {
 			factorValue[counter] = new JLabel(
 					"Selected: " + UniMatchmakerInfoEdit.dropDownLists[counter].getSelectedItem());
 			factorValue[counter].setFont(new Font("Tahoma", Font.PLAIN, 16));
-			factorValue[counter].setForeground(Colour.strongHighlight);
+			factorValue[counter].setForeground(Colour.strike);
 
 			importance[counter] = new JLabel("Weight: " + UniMatchmakerInfoEdit.sliders[counter].getValue());
 			importance[counter].setFont(new Font("Tahoma", Font.PLAIN, 16));
-			importance[counter].setForeground(Colour.strongHighlight);
+			importance[counter].setForeground(Colour.strike);
 
 			if (counter <= 2) {
-				headings[counter].setBounds(25, 80 + 150 * counter, 200, 25);
-				factorValue[counter].setBounds(25, 110 + 150 * counter, 275, 25);
-				importance[counter].setBounds(25, 140 + 150 * counter, 200, 25);
+				headings[counter].setBounds(25, 80 + 135 * counter, 200, 25);
+				factorValue[counter].setBounds(25, 110 + 135 * counter, 275, 25);
+				importance[counter].setBounds(25, 140 + 135 * counter, 200, 25);
 			} else {
-				headings[counter].setBounds(275, 80 + 150 * (counter - 3), 200, 25);
-				factorValue[counter].setBounds(275, 110 + 150 * (counter - 3), 275, 25);
-				importance[counter].setBounds(275, 140 + 150 * (counter - 3), 200, 25);
+				headings[counter].setBounds(275, 80 + 135 * (counter - 3), 200, 25);
+				factorValue[counter].setBounds(275, 110 + 135 * (counter - 3), 275, 25);
+				importance[counter].setBounds(275, 140 + 135 * (counter - 3), 200, 25);
 			}
 
 			externalPanel.add(headings[counter]);

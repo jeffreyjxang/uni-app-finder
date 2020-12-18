@@ -162,15 +162,18 @@ public class University {
 	}
 
 	public ImageIcon getLogo() {
-		return  (logo);
+		return (logo);
 	}
 
 	public void setLogo(ImageIcon logo) {
 		this.logo = logo;
 	}
 
-	public String getLink() { return link; }
+	public String getLink() {
+		return link;
+	}
 
+<<<<<<< HEAD
 	public void setLink(String link) {this.link = link; }
 
 	public boolean getisBookmarked() {
@@ -179,5 +182,9 @@ public class University {
 
 	public void setBookmarked(boolean bookmarked) {
 		isBookmarked = bookmarked;
+=======
+	public void setLink(String link) {
+		this.link = link;
+>>>>>>> 04ad7952c8ac8253d3a763c446c8c2b97afa5b43
 	}
 }
