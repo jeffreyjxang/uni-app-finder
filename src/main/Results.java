@@ -51,6 +51,7 @@ public class Results extends JPanel {
 
 		// Create boarder
 		Border border = BorderFactory.createLineBorder(Colour.strongHighlight, 3);
+		Border averageBorder = BorderFactory.createLineBorder(Colour.strike, 2);
 
 		// Create results panel
 		resultsPanel = new JPanel();
@@ -100,8 +101,10 @@ public class Results extends JPanel {
 		JLabel average = new JLabel();
 		average.setText(String.format("Your Average: %.2f%%", MatchmakingAlgorithm.personAverage));
 		average.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		average.setHorizontalAlignment(SwingConstants.CENTER);
+		average.setBorder(averageBorder);
 		average.setForeground(Colour.strike);
-		average.setBounds(700, 30, 200, 30);
+		average.setBounds(665, 30, 225, 35);
 		resultsPanel.add(average);
 
 		// Variables
