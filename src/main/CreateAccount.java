@@ -117,10 +117,19 @@ public class CreateAccount extends JFrame implements ActionListener {
 			
 			if (!VerifyLogin.existingUsername(username)) {		// Checks if the username exists in the file
 				JOptionPane.showMessageDialog(contentPane, "Username already exists.");
+				userNameField.setText("");
+				passwordField.setText("");
+				confirmPasswordField.setText("");
 			} else if (!VerifyLogin.verifyPassword(password, String.valueOf(confirmPasswordField.getPassword()))) {		// Checks if the second password matches the first
 				JOptionPane.showMessageDialog(contentPane, "Passwords do not match!");
+				userNameField.setText("");
+				passwordField.setText("");
+				confirmPasswordField.setText("");
 			} else if (VerifyLogin.unwantedCharacter(username, password)) {			// Checks if there is an unwanted character.
 				JOptionPane.showMessageDialog(contentPane, "Commas & Spaces are prohibited!");
+				userNameField.setText("");
+				passwordField.setText("");
+				confirmPasswordField.setText("");
 			} else {
 				try {
 					VerifyLogin.saveLogin(username, password);

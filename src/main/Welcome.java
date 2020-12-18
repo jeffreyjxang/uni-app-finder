@@ -87,6 +87,8 @@ public class Welcome {
 					Dashboard.CreateDashboard();
 					Dashboard.dashboardPanel.setVisible(true);
 				} else {
+					usernameField.setText("");
+					passwordField.setText("");
 					JOptionPane.showMessageDialog(welcomePanel, "Invalid Login");
 				}
 			}
