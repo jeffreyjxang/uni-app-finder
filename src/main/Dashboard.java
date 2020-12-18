@@ -142,7 +142,7 @@ public class Dashboard extends JPanel {
 		});
 		quizButton.setBounds(25, 330, 160, 25);
 		taskbarPanel.add(quizButton);
-		
+
 		JButton mapButton = new JButton("View Map");
 		mapButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -161,6 +161,9 @@ public class Dashboard extends JPanel {
 		signOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hidePanel();
+				dashboardPanel.setVisible(false);
+				Welcome.usernameField.setText("");
+				Welcome.passwordField.setText("");
 				Welcome.welcomePanel.setVisible(true);
 			}
 		});

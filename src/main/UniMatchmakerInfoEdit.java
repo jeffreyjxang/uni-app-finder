@@ -108,10 +108,10 @@ public class UniMatchmakerInfoEdit extends JPanel {
 
 		// Create instructions label
 		JLabel instructions = new JLabel(
-				"*Use the sliders to indicate the level of importance for each external factor*");
+				"<html>*Remember to use the sliders to indicate the level of weight of each external factor as it will have an impact on which universities you may get!*<html>");
 		instructions.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		instructions.setForeground(Colour.strongHighlight);
-		instructions.setBounds(25, 50, 500, 30);
+		instructions.setBounds(25, 50, 500, 35);
 		externalPanel.add(instructions);
 
 		// Create external factors headings

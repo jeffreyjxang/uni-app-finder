@@ -59,28 +59,28 @@ public class SurveyResults extends JPanel {
 			JLabel civilengineer = new JLabel("You got Civil Engineer!");
 			civilengineer.setForeground(new Color(255, 138, 226));
 			civilengineer.setBounds(500, 125, 450, 50);
-			civilengineer.setFont(new Font("Serif", Font.PLAIN, 20));
+			civilengineer.setFont(new Font("Serif", Font.PLAIN, 24));
 			surveyResults.add(civilengineer);
 			displayCivil();
 		} else if (SurveyScreen.calculateResults() == "Software Engineer") {
 			JLabel softwareengineer = new JLabel("You got Software Engineer!");
-			softwareengineer.setBounds(150000, 125, 450, 50);
+			softwareengineer.setBounds(500, 125, 450, 50);
 			softwareengineer.setForeground(new Color(255, 138, 226));
-			softwareengineer.setFont(new Font("Serif", Font.PLAIN, 20));
+			softwareengineer.setFont(new Font("Serif", Font.PLAIN, 24));
 			surveyResults.add(softwareengineer);
 			displaySoftware();
 		} else if (SurveyScreen.calculateResults() == "Mechanical Engineer") {
 			JLabel mechanicalengineer = new JLabel("You got Mechanical Engineer!");
 			mechanicalengineer.setBounds(500, 125, 450, 50);
 			mechanicalengineer.setForeground(new Color(255, 138, 226));
-			mechanicalengineer.setFont(new Font("Serif", Font.PLAIN, 20));
+			mechanicalengineer.setFont(new Font("Serif", Font.PLAIN, 24));
 			surveyResults.add(mechanicalengineer);
 			displayMechanical();
 		} else if (SurveyScreen.calculateResults() == "Electrical Engineer") {
 			JLabel electricalengineer = new JLabel("You got Electrical Engineer!");
 			electricalengineer.setBounds(500, 125, 450, 50);
 			electricalengineer.setForeground(new Color(255, 138, 226));
-			electricalengineer.setFont(new Font("Serif", Font.PLAIN, 20));
+			electricalengineer.setFont(new Font("Serif", Font.PLAIN, 24));
 			surveyResults.add(electricalengineer);
 			displayElectrical();
 		}
@@ -91,13 +91,13 @@ public class SurveyResults extends JPanel {
 	private static void displayAerospace() {
 		ImageIcon AEicon = new ImageIcon("resources/types/aerospace.jpg");
 		JLabel AE = new JLabel(AEicon);
-		AE.setBounds(50, 150, 600, 400);
+		AE.setBounds(50, 150, 425, 400);
 		surveyResults.add(AE);
 
 		JLabel AEdescription = new JLabel(
 				"<html>Aerospace Engineering is the primary field of engineering concerned with the development of aircraft and spacecraft. It has two major and overlapping branches: aeronautical engineering and astronautical engineering</html>");
 		AEdescription.setBounds(500, 155, 400, 300);
-		AEdescription.setFont(new Font("Serif", Font.PLAIN, 25));
+		AEdescription.setFont(new Font("Serif", Font.PLAIN, 24));
 		AEdescription.setForeground(new Color(255, 138, 226));
 		surveyResults.add(AEdescription);
 	}
@@ -105,13 +105,13 @@ public class SurveyResults extends JPanel {
 	private static void displayCivil() {
 		ImageIcon CEicon = new ImageIcon("resources/types/civil.jpg");
 		JLabel CE = new JLabel(CEicon);
-		CE.setBounds(50, 150, 600, 400);
+		CE.setBounds(50, 150, 425, 400);
 		surveyResults.add(CE);
 
 		JLabel CEdescription = new JLabel(
 				"<html>Civil engineering is a professional engineering discipline that deals with the design, construction, and maintenance of the physical and naturally built environment, including public works such as roads, bridges, canals, dams, airports, sewerage systems, pipelines, structural components of buildings, and railways</html>");
 		CEdescription.setBounds(500, 155, 400, 300);
-		CEdescription.setFont(new Font("Serif", Font.PLAIN, 25));
+		CEdescription.setFont(new Font("Serif", Font.PLAIN, 24));
 		CEdescription.setForeground(new Color(255, 138, 226));
 		surveyResults.add(CEdescription);
 	}
@@ -119,13 +119,13 @@ public class SurveyResults extends JPanel {
 	private static void displaySoftware() {
 		ImageIcon SEicon = new ImageIcon("resources/types/software.jpg");
 		JLabel SE = new JLabel(SEicon);
-		SE.setBounds(50, 150, 600, 400);
+		SE.setBounds(50, 150, 425, 400);
 		surveyResults.add(SE);
 
 		JLabel SEdescription = new JLabel(
 				"<html>Software engineering is the systematic application of engineering approaches to the development of software. Software engineering is a computing discipline.</html>");
 		SEdescription.setBounds(500, 155, 400, 300);
-		SEdescription.setFont(new Font("Serif", Font.PLAIN, 25));
+		SEdescription.setFont(new Font("Serif", Font.PLAIN, 24));
 		SEdescription.setForeground(new Color(255, 138, 226));
 		surveyResults.add(SEdescription);
 	}
@@ -133,13 +133,13 @@ public class SurveyResults extends JPanel {
 	private static void displayMechanical() {
 		ImageIcon MEicon = new ImageIcon("resources/types/mechanical.jpg");
 		JLabel ME = new JLabel(MEicon);
-		ME.setBounds(50, 150, 600, 400);
+		ME.setBounds(50, 150, 425, 400);
 		surveyResults.add(ME);
 
 		JLabel MEdescription = new JLabel(
 				"<html>Mechanical Engineering includes design engineering, renewable energy, developing medical diagnostic devices, advanced manufacturing and materials, robotics and automation.</html>");
 		MEdescription.setBounds(500, 155, 400, 300);
-		MEdescription.setFont(new Font("Serif", Font.PLAIN, 25));
+		MEdescription.setFont(new Font("Serif", Font.PLAIN, 24));
 		MEdescription.setForeground(new Color(255, 138, 226));
 		surveyResults.add(MEdescription);
 	}
@@ -147,7 +147,7 @@ public class SurveyResults extends JPanel {
 	private static void displayElectrical() {
 		ImageIcon EEicon = new ImageIcon("resources/types/electrical.jpg");
 		JLabel EE = new JLabel(EEicon);
-		EE.setBounds(50, 150, 600, 400);
+		EE.setBounds(50, 150, 425, 400);
 		surveyResults.add(EE);
 
 		JLabel EEdescription = new JLabel(

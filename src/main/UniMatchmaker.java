@@ -130,7 +130,7 @@ public class UniMatchmaker extends JPanel {
 			factorValue[counter].setFont(new Font("Tahoma", Font.PLAIN, 16));
 			factorValue[counter].setForeground(Colour.strongHighlight);
 
-			importance[counter] = new JLabel("Importance: " + UniMatchmakerInfoEdit.sliders[counter].getValue());
+			importance[counter] = new JLabel("Weight: " + UniMatchmakerInfoEdit.sliders[counter].getValue());
 			importance[counter].setFont(new Font("Tahoma", Font.PLAIN, 16));
 			importance[counter].setForeground(Colour.strongHighlight);
 
