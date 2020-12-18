@@ -120,7 +120,7 @@ public class UniversitiesInformation {
 					input.close();
 
 				} catch (FileNotFoundException e) {
-					System.out.println((int) university.getName().charAt(0));
+					//System.out.println((int) university.getName().charAt(0));
 				}
 
 			}
