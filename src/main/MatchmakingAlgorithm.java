@@ -1,5 +1,9 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 import guiClasses.UniMatchmakerInfoEdit;
 import objects.UniversitiesInformation;
 
@@ -11,8 +15,8 @@ public class MatchmakingAlgorithm {
 
 	// Public variables
 	public static double[] score = new double[14];
-	public static int greatestIndex = 0;
-	public static int secondGreatestIndex = 1;
+	public static int greatestIndex;
+	public static int secondGreatestIndex = 0;
 	public static double personAverage;
 
 	public static void Matchmaker() {
@@ -61,7 +65,7 @@ public class MatchmakingAlgorithm {
 
 			// Increase score based on user's average
 			if (personAverage >= uniCutoff[counter])
-				score[counter] += 10;
+				score[counter] += 20;
 			if (personAverage >= UniversitiesInformation.universities.get(counter).getAverage())
 				score[counter] += 5;
 
@@ -135,21 +139,23 @@ public class MatchmakingAlgorithm {
 
 		}
 
-		// Variables
-		double greatest = score[1];
-		double secondGreatest = score[0];
+		double greatest = score[0];
 
-		// Get the top 2 universities' scores
-		for (int counter = 2; counter < 13; counter++)
+		for (int counter = 1; counter < 14; counter++) {
 			if (greatest < score[counter]) {
-				secondGreatestIndex = greatestIndex;
-				secondGreatest = greatest;
-				greatestIndex = counter;
 				greatest = score[counter];
-			} else if (secondGreatest < score[counter]) {
-				secondGreatestIndex = counter;
-				secondGreatest = score[counter];
+				greatestIndex = counter;
 			}
+		}
+
+		double secondGreatest = 0;
+
+		for (int counter = 0; counter < 14; counter++) {
+			if (secondGreatest <= score[counter] && counter != greatestIndex) {
+				secondGreatest = score[counter];
+				secondGreatestIndex = counter;
+			}
+		}
 
 	}
 

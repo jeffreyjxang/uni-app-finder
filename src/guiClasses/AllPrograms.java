@@ -193,6 +193,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			} else if (combobox2.getSelectedIndex() == 4) {
 				uniArrayCopy.clear();
 				if (User.bookmarked.size() <= 0) {
+					uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
 					JOptionPane.showMessageDialog(overallPanel, "Bookmark some universities first!");
 				} else {
 					for (int x = 0; x < User.bookmarked.size(); x++) {
@@ -201,6 +202,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 					}
 				}
 			}
+
+			maxIndex = uniArrayCopy.size();
 
 			currentPage = 0;
 			overallPanel.remove(uniPanel);

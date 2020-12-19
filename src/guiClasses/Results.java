@@ -61,7 +61,7 @@ public class Results extends JPanel {
 		resultsPanel.setVisible(true);
 
 		// Create title label
-		JLabel titleLabel = new JLabel("Application Name/Logo");
+		JLabel titleLabel = new JLabel("School Finder");
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		titleLabel.setForeground(Colour.strongHighlight);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -111,6 +111,8 @@ public class Results extends JPanel {
 		int[] num = new int[2];
 		num[0] = MatchmakingAlgorithm.greatestIndex;
 		num[1] = MatchmakingAlgorithm.secondGreatestIndex;
+		
+		// Variables
 		String[] uni = new String[2];
 		double[] cutoff = new double[2];
 		double[] distance = new double[2];
