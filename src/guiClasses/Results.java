@@ -24,6 +24,13 @@ import main.MatchmakingAlgorithm;
 import objects.UniversitiesInformation;
 import tools.Colour;
 
+/*
+ * Jordan's screen
+ * The class Results creates the results screen based on the
+ * preferences and grades of the user entered in the my preferences tab.
+ * This will display 2 universities the closely matches the user's
+ * preferences.
+ */
 public class Results extends JPanel {
 
 	// GUI

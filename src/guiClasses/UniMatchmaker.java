@@ -20,6 +20,7 @@ import objects.UniversitiesInformation;
 import tools.Colour;
 
 /*
+ * Jordan's screen
  * The class UniMatchmaker is the GUI class that display the user's grades, courses
  * and external university preferences.
  */

@@ -24,6 +24,7 @@ import main.VerifyLogin;
 import tools.Colour;
 
 /*
+ * Jordan's screen
  * The UniMatchmakerInfoEdit class allows the user to edit all of their
  * information such as their courses, grades and external university
  * desicion factors.

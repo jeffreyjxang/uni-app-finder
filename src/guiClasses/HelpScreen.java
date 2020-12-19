@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import tools.Colour;
 
 /*
+ * Jordan's Screen
  * The class HelpScreen will direct the user to show them how
  * our program is used. It will display how to traverse our program step by step
  */

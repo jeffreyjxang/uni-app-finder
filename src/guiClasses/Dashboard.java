@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /*
+ * Jordan's Screen
  * The dashboard class creates the side taskbar as well as the panel that will
  * display the information when a taskbar button is pressed. As well, the intro
  * screen is created in this class.

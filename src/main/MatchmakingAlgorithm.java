@@ -8,8 +8,9 @@ import guiClasses.UniMatchmakerInfoEdit;
 import objects.UniversitiesInformation;
 
 /*
- * The MatchmakingAlgorithm class matchmakes the user's university preferences to
- * a university
+ * Jordan's matchmaking algorithm
+ * The MatchmakingAlgorithm class matchmakes the user's university preferences
+ * and grades to a university
  */
 public class MatchmakingAlgorithm {
 

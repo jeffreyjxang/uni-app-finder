@@ -18,6 +18,12 @@ import javax.swing.JTextField;
 import main.VerifyLogin;
 import tools.Colour;
 
+/*
+ * Jordan's screen
+ * The class Welcome will create the welcome screen which
+ * will allow the user to login or be redirected to create an account.
+ * The user will also be able to go to the help button for more directions.
+ */
 public class Welcome {
 
 	// Public GUI

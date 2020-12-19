@@ -183,6 +183,13 @@ public class AllPrograms extends JPanel implements ActionListener {
 		website.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		overallPanel.add(website);
 
+		nsseButton.setText("All Universities NSSE Table");
+		nsseButton.setBounds(590, 350, 300, 50);
+		nsseButton.setBackground(Colour.strike);
+		nsseButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		nsseButton.addActionListener(this);
+		overallPanel.add(nsseButton);
+
 		setVisible(true);
 	}
 
@@ -191,6 +198,10 @@ public class AllPrograms extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		// COMBOBOX2 is the Sorting combobox, changes the uniarraycopy based on which
 		// sorting the user chose
+		if (event.getSource() == nsseButton) {
+			NSSE.CreateNSSE();
+		}
+
 		if (event.getSource() == combobox2) {
 
 			if (combobox2.getSelectedIndex() == 0) { // if its A-Z
@@ -216,7 +227,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 					resetButton.doClick();
 				} else {
 					for (int x = 0; x < User.bookmarked.size(); x++) {
-						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities into
+						uniArrayCopy.add(x, User.bookmarked.get(x)); // adds all the users bookmarked universities
+																		// into
 						// the uniArrayCopy
 					}
 					int index = 0;
