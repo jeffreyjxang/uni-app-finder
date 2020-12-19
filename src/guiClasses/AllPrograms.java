@@ -18,11 +18,12 @@ import static java.awt.Color.*;
 
 
 /*
+	* Jeffrey's Screen
  * The AllPrograms class creates a JPanel that will display to the user
  * all of the programs, 1 by 1. It allows the user to sort either alphabetically, or
  * by average, and in reverse respectively. It displays a basic description about the
  * university, their national rank, a picture, and whether the user's grades
- * would be enough to get in.
+ * would be enough to get in, as well as the NSSE information.
  */
 public class AllPrograms extends JPanel implements ActionListener {
 
@@ -262,8 +263,6 @@ public class AllPrograms extends JPanel implements ActionListener {
 				overallPanel.add(uniPanel);
 
 				overallPanel.repaint();
-			} else {
-				resetButton.doClick();
 			}
 		}
 
