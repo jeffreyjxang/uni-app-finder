@@ -130,6 +130,7 @@ public class Dashboard extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				hidePanel();
 				AllPrograms.overallPanel.setVisible(true);
+				AllPrograms.resetButton.doClick();
 
 			}
 		});

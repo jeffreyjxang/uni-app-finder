@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class University {
+
 	private String name;
 	private double average;
 	private double cutoff;
@@ -16,24 +17,31 @@ public class University {
 	private double residenceCost;
 	private int ranking;
 	private String description;
-	private Icon icon;
-	private String keywords;
+	private ImageIcon icon;
+	private Image iconImage;
 	private ImageIcon logo;
+
+	public Image getIconImage() {
+		return iconImage;
+	}
+
+	public void setIconImage(Image iconImage) {
+		this.iconImage = iconImage;
+	}
+
+	private String keywords;
 	private String link;
 	private Image image;
 	private boolean isBookmarked;
-
-	public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
+	private double excellent;
+	private double fair;
+	private double good;
+	private double poor;
 
 	// constructor method University
 	public University(String name, double average, double cutoff, int tuition, int classSize, double latitude,
-			double longitude, int nationalRank, int uniSize, double residenceCost, int ranking, String link) {
+			double longitude, int nationalRank, int uniSize, double residenceCost, int ranking, String link,
+			double excellent, double good, double fair, double poor) {
 		this.name = name;
 		this.average = average;
 		this.cutoff = cutoff;
@@ -46,6 +54,10 @@ public class University {
 		this.residenceCost = residenceCost;
 		this.ranking = ranking;
 		this.link = link;
+		this.excellent = excellent;
+		this.good = good;
+		this.fair = fair;
+		this.poor = poor;
 	}
 
 	// getters and setters
@@ -145,11 +157,11 @@ public class University {
 		this.description = description;
 	}
 
-	public Icon getIcon() {
+	public ImageIcon getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Icon icon) {
+	public void setIcon(ImageIcon icon) {
 		this.icon = icon;
 	}
 
@@ -183,6 +195,47 @@ public class University {
 
 	public void setBookmarked(boolean bookmarked) {
 		isBookmarked = bookmarked;
+
+	}
+
+	public double getExcellent() {
+		return excellent;
+	}
+
+	public void setExcellent(double excellent) {
+		this.excellent = excellent;
+	}
+
+	public double getFair() {
+		return fair;
+	}
+
+	public void setFair(double fair) {
+		this.fair = fair;
+	}
+
+	public double getGood() {
+		return good;
+	}
+
+	public void setGood(double good) {
+		this.good = good;
+	}
+
+	public double getPoor() {
+		return poor;
+	}
+
+	public void setPoor(double poor) {
+		this.poor = poor;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 }
