@@ -50,12 +50,10 @@ public class UniversitiesInformation {
 			index = 0;
 
 			while (input.hasNext()) {
-				universities.add(index,
-						new University(input.next().replaceAll("\n", "").replaceAll("\r", ""), input.nextDouble(),
-								input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
-								input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
-								input.nextInt(), input.next(),input.nextDouble(),input.nextDouble(),input.nextDouble()
-								,input.nextDouble()));
+				universities.add(index, new University(input.next().replaceAll("\n", "").replaceAll("\r", ""),
+						input.nextDouble(), input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(),
+						input.nextDouble(), input.nextInt(), input.nextInt(), input.nextDouble(), input.nextInt(),
+						input.next(), input.nextDouble(), input.nextDouble(), input.nextDouble(), input.nextDouble()));
 				index++;
 
 			}
@@ -102,7 +100,8 @@ public class UniversitiesInformation {
 				uni.setIcon(new ImageIcon(path + "/resources/uniPictures/" + uni.getName() + ".jpg"));
 				uni.setLogo(new ImageIcon(path + "/resources/uniLogos/" + uni.getName() + ".png"));
 
-				uni.setIconImage( uni.getIcon().getImage().getScaledInstance(uni.getIcon().getIconWidth()/2,uni.getIcon().getIconHeight()/2,0));
+				uni.setIconImage(uni.getIcon().getImage().getScaledInstance(uni.getIcon().getIconWidth() / 2,
+						uni.getIcon().getIconHeight() / 2, 0));
 				uni.setImage(uni.getLogo().getImage().getScaledInstance(uni.getLogo().getIconWidth() / 3,
 						uni.getLogo().getIconHeight() / 3, 0));
 
