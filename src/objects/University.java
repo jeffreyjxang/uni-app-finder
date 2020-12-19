@@ -38,11 +38,10 @@ public class University {
 	private double good;
 	private double poor;
 
-
 	// constructor method University
 	public University(String name, double average, double cutoff, int tuition, int classSize, double latitude,
 			double longitude, int nationalRank, int uniSize, double residenceCost, int ranking, String link,
-					  double excellent,double good, double fair, double poor) {
+			double excellent, double good, double fair, double poor) {
 		this.name = name;
 		this.average = average;
 		this.cutoff = cutoff;
@@ -196,6 +195,7 @@ public class University {
 
 	public void setBookmarked(boolean bookmarked) {
 		isBookmarked = bookmarked;
+
 	}
 
 	public double getExcellent() {
