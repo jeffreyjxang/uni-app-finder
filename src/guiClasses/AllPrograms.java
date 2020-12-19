@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import jdk.dynalink.linker.ConversionComparator.Comparison;
 import static java.awt.Color.*;
 
-
 /*
  * The AllPrograms class creates a JPanel that will display to the user
  * all of the programs, 1 by 1. It allows the user to sort either alphabetically, or
@@ -147,7 +146,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		resetButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		overallPanel.add(resetButton);
 
-		//Textfield for searching
+		// Textfield for searching
 		keyword.setBounds(600, 80, 200, 30);
 		keyword.addActionListener(this);
 		keyword.setBackground(Colour.strike);
@@ -159,14 +158,14 @@ public class AllPrograms extends JPanel implements ActionListener {
 		searchLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		overallPanel.add(searchLabel);
 
-		//Button to begin search
+		// Button to begin search
 		searchButton.setBounds(600, 110, 100, 35);
 		searchButton.addActionListener(this);
 		searchButton.setBackground(Colour.strike);
 		searchButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		searchButton.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 
-		//Current location within the array, shown at the top
+		// Current location within the array, shown at the top
 		currentLocation.setText(currentPage + 1 + "/" + uniArrayCopy.size());
 		currentLocation.setBounds(500, 15, 90, 50);
 		currentLocation.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -174,7 +173,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		overallPanel.add(currentLocation);
 		overallPanel.add(searchButton);
 
-		//Link to the website
+		// Link to the website
 		website.setText("Website");
 		website.setBounds(55, 360, 100, 30);
 		website.setBackground(Colour.strike);
@@ -207,7 +206,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 				insertionSort();
 				reverse();
 				reversed = true;
-			} else if (combobox2.getSelectedIndex() == 4) {//bookmarked universities
+			} else if (combobox2.getSelectedIndex() == 4) {// bookmarked universities
 				uniArrayCopy.clear();
 				if (User.bookmarked.size() <= 0) {
 					uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
@@ -220,16 +219,15 @@ public class AllPrograms extends JPanel implements ActionListener {
 						// the uniArrayCopy
 					}
 					int index = 0;
-						while (index < uniArrayCopy.size()-1) {
-							if (uniArrayCopy.get(index).getName().equals(uniArrayCopy.get(index + 1).getName())) {
-								uniArrayCopy.remove(index + 1);
-							}else {
-								index++;
-								}
+					while (index < uniArrayCopy.size() - 1) {
+						if (uniArrayCopy.get(index).getName().equals(uniArrayCopy.get(index + 1).getName())) {
+							uniArrayCopy.remove(index + 1);
+						} else {
+							index++;
 						}
 					}
 				}
-
+			}
 
 			maxIndex = uniArrayCopy.size();
 
@@ -322,7 +320,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 
-		//Button to reset the screen
+		// Button to reset the screen
 		if (event.getSource() == resetButton) {
 			maxIndex = 14;
 			uniArrayCopy = new ArrayList<>(uniClass.getUniversities());
@@ -350,7 +348,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 
-		//Button to link the user to the university website
+		// Button to link the user to the university website
 		if (event.getSource() == website) {
 			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 				try {
@@ -431,7 +429,8 @@ public class AllPrograms extends JPanel implements ActionListener {
 
 		}
 
-		//If the bookmark button is pressed (adds the university to another array, and changes the text
+		// If the bookmark button is pressed (adds the university to another array, and
+		// changes the text
 		if (event.getSource() == bookmark) {
 			if (!uniArrayCopy.get(currentPage).getisBookmarked()) {
 				User.bookmarked.add(uniArrayCopy.get(currentPage));
@@ -457,12 +456,12 @@ public class AllPrograms extends JPanel implements ActionListener {
 	// Creates the text info and the pictures of each uni, and the comparisons
 	public JPanel createUniPanel(University uni) {
 
-		//Setup the main panel
+		// Setup the main panel
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(900, 900);
 
-		//Setup the labels
+		// Setup the labels
 		JLabel nameLabel = new JLabel();
 		JLabel infoLabel = new JLabel("<html>" + uni.getDescription() + "<html>");
 		JLabel nationalRankLabel = new JLabel("Rank: " + uni.getNationalRank());
@@ -470,39 +469,36 @@ public class AllPrograms extends JPanel implements ActionListener {
 		JLabel comparison = new JLabel("Comparison");
 		JLabel comparisonStatement = new JLabel();
 		JLabel[] surveyCategories = new JLabel[4];
-		String[] surveyCategoriesNames = new String[]{"Excellent","Good","Fair","Poor"};
+		String[] surveyCategoriesNames = new String[] { "Excellent", "Good", "Fair", "Poor" };
 		JLabel nsseLabel = new JLabel();
 		JLabel averagesLabel = new JLabel();
 		JLabel cutoffLabel = new JLabel();
 		JLabel averagesTitleLabel = new JLabel();
 		JLabel userAverageLabel = new JLabel();
 
-
 		logo.setIcon(new ImageIcon(uni.getImage()));
 		logo.setBounds(0, 50, 300, 200);
 
-
-
 		averagesTitleLabel.setText("<html>Secondary School Averages of Full-Time, First Year Students</html>");
-		averagesTitleLabel.setBounds(580, 300, 300,50);
+		averagesTitleLabel.setBounds(580, 300, 300, 50);
 		averagesTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		averagesTitleLabel.setForeground(Colour.strongHighlight);
 		panel.add(averagesTitleLabel);
 
 		averagesLabel.setText("<html>Average" + "<br>" + uni.getAverage() + "%</html>");
-		averagesLabel.setBounds(580, 325, 100,100);
+		averagesLabel.setBounds(580, 325, 100, 100);
 		averagesLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		averagesLabel.setForeground(Colour.strongHighlight);
 		panel.add(averagesLabel);
 
 		cutoffLabel.setText("<html>Cutoff" + "<br>" + uni.getCutoff() + "%</html>");
-		cutoffLabel.setBounds(680, 325, 100,100);
+		cutoffLabel.setBounds(680, 325, 100, 100);
 		cutoffLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cutoffLabel.setForeground(Colour.strongHighlight);
 		panel.add(cutoffLabel);
 
 		nsseLabel.setText("National Survey of Student Engagement");
-		nsseLabel.setBounds(580, 120,300,30);
+		nsseLabel.setBounds(580, 120, 300, 30);
 		nsseLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nsseLabel.setBackground(Colour.bg);
 		nsseLabel.setForeground(Colour.strongHighlight);
@@ -510,20 +506,24 @@ public class AllPrograms extends JPanel implements ActionListener {
 		for (int i = 0; i < surveyCategories.length; i++) {
 			surveyCategories[i] = new JLabel();
 			switch (i) {
-				case 0:
-					surveyCategories[i].setText("<html>" +surveyCategoriesNames[i] + "<br><br>" + uni.getExcellent()+ "%</html>");
-					break;
-				case 1:
-					surveyCategories[i].setText("<html>" +surveyCategoriesNames[i] + "<br><br>" + uni.getGood()+ "%</html>");
-					break;
-				case 2:
-					surveyCategories[i].setText("<html>" +surveyCategoriesNames[i] + "<br><br>" + uni.getFair()+ "%</html>");
-					break;
-				case 3:
-					surveyCategories[i].setText("<html>" +surveyCategoriesNames[i] + "<br><br>" + uni.getPoor()+ "%</html>");
-					break;
+			case 0:
+				surveyCategories[i]
+						.setText("<html>" + surveyCategoriesNames[i] + "<br><br>" + uni.getExcellent() + "%</html>");
+				break;
+			case 1:
+				surveyCategories[i]
+						.setText("<html>" + surveyCategoriesNames[i] + "<br><br>" + uni.getGood() + "%</html>");
+				break;
+			case 2:
+				surveyCategories[i]
+						.setText("<html>" + surveyCategoriesNames[i] + "<br><br>" + uni.getFair() + "%</html>");
+				break;
+			case 3:
+				surveyCategories[i]
+						.setText("<html>" + surveyCategoriesNames[i] + "<br><br>" + uni.getPoor() + "%</html>");
+				break;
 			}
-			surveyCategories[i].setBounds(580 + i*80,150,200,50);
+			surveyCategories[i].setBounds(580 + i * 80, 150, 200, 50);
 			surveyCategories[i].setBackground(Colour.bg);
 			surveyCategories[i].setForeground(Colour.strongHighlight);
 			surveyCategories[i].setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -544,7 +544,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		infoLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		infoLabel.setForeground(Colour.strongHighlight);
 
-		//Checks if the uni is in the bookmarked list
+		// Checks if the uni is in the bookmarked list
 		if (User.bookmarked.contains(uni)) {
 
 			bookmark.setText("Bookmarked!");
@@ -552,7 +552,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 			bookmark.setText("Bookmark University");
 		}
 		bookmark.setBounds(340, 20, 170, 50);
-		bookmark.setFont(new Font("Tahoma", Font.BOLD,12));
+		bookmark.setFont(new Font("Tahoma", Font.BOLD, 12));
 		bookmark.setBackground(Colour.strike);
 		bookmark.setBorder(BorderFactory.createLineBorder(Colour.lightBg));
 		bookmark.addActionListener(this);
@@ -615,7 +615,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		return panel;
 	}
 
-	//Used to sort the universities by increasing average
+	// Used to sort the universities by increasing average
 	public void insertionSort() {
 		// Runs for every index of the array except the first
 		for (int x = 1; x < uniArrayCopy.size(); x++) {
@@ -634,14 +634,15 @@ public class AllPrograms extends JPanel implements ActionListener {
 			}
 		}
 	}
-	//Part of insertion sort
+
+	// Part of insertion sort
 	public void swap(ArrayList<University> universities, int x, int smallest) {
 		University temp = universities.get(x);
 		universities.set(x, universities.get(smallest));
 		universities.set(smallest, temp);
 	}
 
-	//Sorts alphabetically
+	// Sorts alphabetically
 	public void alphaSort() {
 		University temp;
 		for (int i = 0; i < uniArrayCopy.size(); i++) {
@@ -655,7 +656,7 @@ public class AllPrograms extends JPanel implements ActionListener {
 		}
 	}
 
-	//Gets the "name" of the university ex. university of toronto ---> toronto
+	// Gets the "name" of the university ex. university of toronto ---> toronto
 	public String replaceFiller(String text) {
 		text = text.toLowerCase();
 		text = text.replace("university", "");

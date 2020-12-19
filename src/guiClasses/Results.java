@@ -65,7 +65,7 @@ public class Results extends JPanel {
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		titleLabel.setForeground(Colour.strongHighlight);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		titleLabel.setBounds(250, 10, 400, 65);
+		titleLabel.setBounds(200, 10, 400, 65);
 		resultsPanel.add(titleLabel);
 
 		// Create caption label
@@ -73,7 +73,7 @@ public class Results extends JPanel {
 		captionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		captionLabel.setForeground(Colour.strongHighlight);
 		captionLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		captionLabel.setBounds(250, 65, 400, 25);
+		captionLabel.setBounds(200, 65, 400, 25);
 		resultsPanel.add(captionLabel);
 
 		// Create description label
@@ -81,7 +81,7 @@ public class Results extends JPanel {
 		descriptionLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		descriptionLabel.setForeground(Colour.strongHighlight);
-		descriptionLabel.setBounds(200, 100, 500, 25);
+		descriptionLabel.setBounds(150, 100, 500, 25);
 		resultsPanel.add(descriptionLabel);
 
 		// Create back button
@@ -104,14 +104,27 @@ public class Results extends JPanel {
 		average.setHorizontalAlignment(SwingConstants.CENTER);
 		average.setBorder(averageBorder);
 		average.setForeground(Colour.strike);
-		average.setBounds(665, 30, 225, 35);
+		average.setBounds(665, 90, 225, 35);
 		resultsPanel.add(average);
+
+		// Create NSSE Button
+		JButton nsseButton = new JButton("NSSE Table");
+		nsseButton.setBackground(Colour.strike);
+		nsseButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		nsseButton.setHorizontalAlignment(SwingConstants.CENTER);
+		nsseButton.setBounds(700, 30, 150, 35);
+		nsseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NSSE.CreateNSSE();
+			}
+		});
+		resultsPanel.add(nsseButton);
 
 		// Variables
 		int[] num = new int[2];
 		num[0] = MatchmakingAlgorithm.greatestIndex;
 		num[1] = MatchmakingAlgorithm.secondGreatestIndex;
-		
+
 		// Variables
 		String[] uni = new String[2];
 		double[] cutoff = new double[2];
